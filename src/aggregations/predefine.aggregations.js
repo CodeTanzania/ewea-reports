@@ -26,7 +26,7 @@ export const PREDEFINE_TIME_METRIC_FIELDS = {};
  *
  */
 export const getPredefineBaseAggregation = (criteria = {}) => {
-  // initialize predefine base aggegation
+  // initialize predefine base aggregation
   const base = Predefine.lookup(criteria);
 
   // add extra metric fields

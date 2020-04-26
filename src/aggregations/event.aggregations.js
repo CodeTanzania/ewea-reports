@@ -35,7 +35,7 @@ export const EVENT_TIME_METRIC_FIELDS = {
  *
  */
 export const getEventBaseAggregation = (criteria = {}) => {
-  // initialize event base aggegation
+  // initialize event base aggregation
   const base = Event.lookup(criteria);
 
   // add extra metric fields

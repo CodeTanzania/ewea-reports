@@ -26,7 +26,7 @@ export const CHANGELOG_TIME_METRIC_FIELDS = {};
  *
  */
 export const getChangeLogBaseAggregation = (criteria = {}) => {
-  // initialize eventchangelog base aggegation
+  // initialize eventchangelog base aggregation
   const base = EventChangeLog.lookup(criteria);
 
   // add extra metric fields
