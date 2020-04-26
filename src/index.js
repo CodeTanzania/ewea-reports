@@ -25,6 +25,10 @@ import { start as startHttp } from '@lykmapipo/express-rest-actions';
 import { createModels } from '@lykmapipo/file';
 import reportRouter from './report.http.router';
 
+export * from './aggregations/changelog.aggregations';
+export * from './aggregations/event.aggregations';
+export * from './aggregations/predefine.aggregations';
+
 /**
  * @name info
  * @description package information

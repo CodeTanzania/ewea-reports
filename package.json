@@ -84,6 +84,7 @@
     "@commitlint/travis-cli": "^8.3.5",
     "@lykmapipo/express-test-helpers": "^0.9.2",
     "@lykmapipo/mongoose-test-helpers": "^0.7.43",
+    "@lykmapipo/test-helpers": "^0.5.17",
     "chai": "^4.2.0",
     "commitizen": "^4.0.4",
     "coveralls": "^3.1.0",
