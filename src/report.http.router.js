@@ -9,6 +9,11 @@ const PATH_RISKS = '/reports/risks';
 const PATH_ACTIONS = '/reports/actions';
 const PATH_NEEDS = '/reports/needs';
 const PATH_EFFECTS = '/reports/effects';
+const PATH_RESOURCES = '/reports/resources';
+const PATH_PARTIES = '/reports/parties';
+const PATH_ALERTS = '/reports/alerts';
+const PATH_DISPATCHES = '/reports/dispatches';
+const PATH_CASES = '/reports/cases';
 
 /**
  * @name ReportHttpRouter
@@ -115,6 +120,81 @@ router.get(PATH_NEEDS, (request, response) => {
  * @public
  */
 router.get(PATH_EFFECTS, (request, response) => {
+  response.ok({});
+});
+
+/**
+ * @name GetResourceReport
+ * @memberof ReportHttpRouter
+ * @description Returns resources report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_RESOURCES, (request, response) => {
+  response.ok({});
+});
+
+/**
+ * @name GetPartyReport
+ * @memberof ReportHttpRouter
+ * @description Returns parties report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_PARTIES, (request, response) => {
+  response.ok({});
+});
+
+/**
+ * @name GetAlertReport
+ * @memberof ReportHttpRouter
+ * @description Returns alerts report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_ALERTS, (request, response) => {
+  response.ok({});
+});
+
+/**
+ * @name GetDispatchReport
+ * @memberof ReportHttpRouter
+ * @description Returns dispatches report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_DISPATCHES, (request, response) => {
+  response.ok({});
+});
+
+/**
+ * @name GetCaseReport
+ * @memberof ReportHttpRouter
+ * @description Returns cases report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_CASES, (request, response) => {
   response.ok({});
 });
 
