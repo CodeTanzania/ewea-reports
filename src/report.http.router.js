@@ -12,6 +12,7 @@ const PATH_EFFECTS = '/reports/effects';
 const PATH_RESOURCES = '/reports/resources';
 const PATH_PARTIES = '/reports/parties';
 const PATH_ALERTS = '/reports/alerts';
+const PATH_EVENTS = '/reports/events';
 const PATH_DISPATCHES = '/reports/dispatches';
 const PATH_CASES = '/reports/cases';
 
@@ -150,7 +151,9 @@ router.get(PATH_RESOURCES, (request, response) => {
  * @public
  */
 router.get(PATH_PARTIES, (request, response) => {
-  response.ok({});
+  response.ok({
+    overview: { agency: 14, focal: 127 },
+  });
 });
 
 /**
@@ -166,6 +169,23 @@ router.get(PATH_PARTIES, (request, response) => {
  */
 router.get(PATH_ALERTS, (request, response) => {
   response.ok({});
+});
+
+/**
+ * @name GetEventReport
+ * @memberof ReportHttpRouter
+ * @description Returns events report
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.1.0
+ * @version 1.0.0
+ * @public
+ */
+router.get(PATH_EVENTS, (request, response) => {
+  response.ok({
+    overview: { total: 14, active: 9, ended: 5 },
+  });
 });
 
 /**

@@ -120,6 +120,17 @@ describe('Reports Rest API', () => {
       });
   });
 
+  it('should handle HTTP GET on /v1/reports/events', (done) => {
+    testGet('/v1/reports/events')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((error, { body }) => {
+        expect(error).to.not.exist;
+        expect(body).to.exist;
+        done(error, body);
+      });
+  });
+
   it('should handle HTTP GET on /v1/reports/dispatches', (done) => {
     testGet('/v1/reports/dispatches')
       .expect(200)
