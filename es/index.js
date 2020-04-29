@@ -6,7 +6,7 @@ import { mount } from '@lykmapipo/express-common';
 import { Router, start as start$1 } from '@lykmapipo/express-rest-actions';
 import { createModels } from '@lykmapipo/file';
 import { isFunction } from 'lodash';
-import { waterfall } from 'async';
+import { waterfall, parallel } from 'async';
 import { Party } from '@codetanzania/emis-stakeholder';
 import { DEFAULT_PREDEFINE_RELATION } from '@codetanzania/ewea-common';
 import { EventChangeLog, Event } from '@codetanzania/ewea-event';
@@ -415,19 +415,69 @@ const getPartyBaseAggregation = (criteria = {}) => {
   // project default on relations
   base.project(PARTY_DEFAULT_PROJECTION);
 
+  // add base projection
+  base.project(PARTY_BASE_PROJECTION);
+
   // TODO: project per relations before add metrics
 
   // add extra metric fields
   base.addFields(PARTY_BASE_METRIC_FIELDS);
 
-  // add base projection
-  base.project(PARTY_BASE_PROJECTION);
-
   // return party base aggregation
   return base;
 };
 
-// TODO: metrics only aggregation; getPartyMetrics/getPartyOverview
+/**
+ * @function getPartyOverview
+ * @name getPartyOverview
+ * @description Create `Party` overview analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid party overview analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.4.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getPartyOverview({ ... });
+ * //=> { total: 7, ... }
+ *
+ */
+const getPartyOverview = (criteria, done) => {
+  // normalize arguments
+  const filter = isFunction(criteria) ? {} : criteria;
+  const cb = isFunction(criteria) ? criteria : done;
+
+  // obtain party base aggregation
+  const base = getPartyBaseAggregation(filter);
+
+  // add facets
+  const facets = {
+    ...PARTY_FACET_OVERVIEW,
+  };
+  base.facet(facets);
+
+  // run aggregation
+  const aggregate = (next) => base.exec(next);
+  const normalize = (result, next) => {
+    // ensure data
+    const { overview } = safeMergeObjects(...result);
+
+    // normalize result
+    const data = safeMergeObjects(...overview);
+
+    // return normalize result
+    return next(null, data);
+  };
+
+  // return
+  const tasks = [aggregate, normalize];
+  return waterfall(tasks, cb);
+};
 
 /**
  * @function getPartyAnalysis
@@ -494,6 +544,52 @@ const getPartyAnalysis = (criteria, done) => {
 
 // TODO: dataset only aggregation; getPartyDatasets
 
+const DEFAULT_OVERVIEW_ANALYSIS = {
+  parties: { total: 0, agency: 0, focal: 0 },
+};
+
+/**
+ * @function getOverviewAnalysis
+ * @name getOverviewAnalysis
+ * @description Create overview analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid overview analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.4.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getOverviewAnalysis({ ... });
+ * //=> { data: { parties: { ... } }, ... }
+ *
+ */
+const getOverviewAnalysis = (criteria, done) => {
+  // normalize arguments
+  const filter = isFunction(criteria) ? {} : criteria;
+  const cb = isFunction(criteria) ? criteria : done;
+
+  // tasks
+  const parties = (next) => getPartyOverview(filter, next);
+  const tasks = { parties };
+
+  // return
+  return parallel(tasks, (error, overviews) => {
+    // back-off on error
+    if (error) {
+      return cb(error);
+    }
+
+    // normalize and return
+    const data = safeMergeObjects(DEFAULT_OVERVIEW_ANALYSIS, overviews);
+    return cb(null, { data });
+  });
+};
+
 /* constants */
 const API_VERSION = getString('API_VERSION', '1.0.0');
 const PATH_OVERVIEW = '/reports/overviews';
@@ -538,8 +634,13 @@ const router = new Router({
  * @version 1.0.0
  * @public
  */
-router.get(PATH_OVERVIEW, (request, response) => {
-  response.ok({});
+router.get(PATH_OVERVIEW, (request, response, next) => {
+  return getOverviewAnalysis({}, (error, report) => {
+    if (error) {
+      return next(error);
+    }
+    return response.ok(report);
+  });
 });
 
 /**
@@ -914,4 +1015,4 @@ const start = (done) => {
   });
 };
 
-export { CHANGELOG_FLAG_METRIC_FIELDS, CHANGELOG_TIME_METRIC_FIELDS, EVENT_FLAG_METRIC_FIELDS, EVENT_TIME_METRIC_FIELDS, PARTY_BASE_AREA_PROJECTION, PARTY_BASE_GROUP_PROJECTION, PARTY_BASE_LEVEL_PROJECTION, PARTY_BASE_METRIC_FIELDS, PARTY_BASE_PROJECTION, PARTY_BASE_ROLE_PROJECTION, PARTY_DEFAULT_PROJECTION, PARTY_FACET_OVERALL_AREA, PARTY_FACET_OVERALL_GROUP, PARTY_FACET_OVERALL_LEVEL, PARTY_FACET_OVERALL_ROLE, PARTY_FACET_OVERVIEW, PREDEFINE_FLAG_METRIC_FIELDS, PREDEFINE_TIME_METRIC_FIELDS, apiVersion, getChangeLogBaseAggregation, getEventBaseAggregation, getPartyAnalysis, getPartyBaseAggregation, getPredefineBaseAggregation, info, router as reportRouter, start };
+export { CHANGELOG_FLAG_METRIC_FIELDS, CHANGELOG_TIME_METRIC_FIELDS, DEFAULT_OVERVIEW_ANALYSIS, EVENT_FLAG_METRIC_FIELDS, EVENT_TIME_METRIC_FIELDS, PARTY_BASE_AREA_PROJECTION, PARTY_BASE_GROUP_PROJECTION, PARTY_BASE_LEVEL_PROJECTION, PARTY_BASE_METRIC_FIELDS, PARTY_BASE_PROJECTION, PARTY_BASE_ROLE_PROJECTION, PARTY_DEFAULT_PROJECTION, PARTY_FACET_OVERALL_AREA, PARTY_FACET_OVERALL_GROUP, PARTY_FACET_OVERALL_LEVEL, PARTY_FACET_OVERALL_ROLE, PARTY_FACET_OVERVIEW, PREDEFINE_FLAG_METRIC_FIELDS, PREDEFINE_TIME_METRIC_FIELDS, apiVersion, getChangeLogBaseAggregation, getEventBaseAggregation, getOverviewAnalysis, getPartyAnalysis, getPartyBaseAggregation, getPartyOverview, getPredefineBaseAggregation, info, router as reportRouter, start };
