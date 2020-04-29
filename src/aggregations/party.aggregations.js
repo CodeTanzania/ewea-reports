@@ -413,13 +413,13 @@ export const getPartyBaseAggregation = (criteria = {}) => {
   // project default on relations
   base.project(PARTY_DEFAULT_PROJECTION);
 
+  // add base projection
+  base.project(PARTY_BASE_PROJECTION);
+
   // TODO: project per relations before add metrics
 
   // add extra metric fields
   base.addFields(PARTY_BASE_METRIC_FIELDS);
-
-  // add base projection
-  base.project(PARTY_BASE_PROJECTION);
 
   // return party base aggregation
   return base;
