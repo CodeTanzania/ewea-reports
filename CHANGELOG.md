@@ -1,3 +1,22 @@
+#### 0.4.0 (2020-04-29)
+
+##### Chores
+
+* **deps:**  force latest version & audit fix ([9c04dc70](https://github.com/codetanzania/ewea-reports/commit/9c04dc7056063835a0d78f08e5dda8a297ad2760))
+
+##### New Features
+
+* **overview-analysis:**  expose parties overview ([f0d118bb](https://github.com/codetanzania/ewea-reports/commit/f0d118bb3b4cac32feb271b7c6514cc06f8d3f75))
+* **party-aggregations:**  expose overview analysis ([7fc796a7](https://github.com/codetanzania/ewea-reports/commit/7fc796a720bb7b63a2d56a1515e4dda469c588a7))
+
+##### Refactors
+
+* **party-aggregations:**  move base projection before metric fields ([539bfcc4](https://github.com/codetanzania/ewea-reports/commit/539bfcc47e72a5577c8d7614220ee3b626203e76))
+
+##### Code Style Changes
+
+* **overview-analysis:**  add jsdocs ([a16cab92](https://github.com/codetanzania/ewea-reports/commit/a16cab92a0af4a03fc861a7d402659a6d16a4602))
+
 #### 0.3.0 (2020-04-29)
 
 ##### Chores
