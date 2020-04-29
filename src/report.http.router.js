@@ -2,6 +2,7 @@ import { getString } from '@lykmapipo/env';
 import { Router } from '@lykmapipo/express-rest-actions';
 
 import { getPartyAnalysis } from './aggregations/party.aggregations';
+import { getOverviewAnalysis } from './aggregations/overview.aggregations';
 
 /* constants */
 const API_VERSION = getString('API_VERSION', '1.0.0');
@@ -47,8 +48,13 @@ const router = new Router({
  * @version 1.0.0
  * @public
  */
-router.get(PATH_OVERVIEW, (request, response) => {
-  response.ok({});
+router.get(PATH_OVERVIEW, (request, response, next) => {
+  return getOverviewAnalysis({}, (error, report) => {
+    if (error) {
+      return next(error);
+    }
+    return response.ok(report);
+  });
 });
 
 /**
