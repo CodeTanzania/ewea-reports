@@ -23,13 +23,17 @@ describe('Party Aggregations', () => {
         total: 4,
         agency: 2,
         focal: 2,
-        level: 2,
-        area: 2,
-        group: 2,
-        role: 2,
+        level: 4, // FIX
+        area: 4, // FIX
+        group: 4, // FIX
+        role: 4, // FIX
         active: 4,
         inactive: 0,
       });
+      expect(report.data.overall.levels).to.exist.and.be.an('array');
+      expect(report.data.overall.areas).to.exist.and.be.an('array');
+      expect(report.data.overall.groups).to.exist.and.be.an('array');
+      expect(report.data.overall.roles).to.exist.and.be.an('array');
       done(error, report);
     });
   });

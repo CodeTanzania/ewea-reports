@@ -99,13 +99,17 @@ describe('Reports Rest API', () => {
           total: 4,
           agency: 2,
           focal: 2,
-          level: 2,
-          area: 2,
-          group: 2,
-          role: 2,
+          level: 4, // FIX
+          area: 4, // FIX
+          group: 4, // FIX
+          role: 4, // FIX
           active: 4,
           inactive: 0,
         });
+        expect(body.data.overall.levels).to.exist.and.be.an('array');
+        expect(body.data.overall.areas).to.exist.and.be.an('array');
+        expect(body.data.overall.groups).to.exist.and.be.an('array');
+        expect(body.data.overall.roles).to.exist.and.be.an('array');
         done(error, body);
       });
   });
