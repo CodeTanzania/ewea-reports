@@ -1,6 +1,9 @@
-import '@codetanzania/ewea-internals';
-import { connect, clear, drop } from '@lykmapipo/mongoose-test-helpers';
+import { connect, seed } from '@codetanzania/ewea-common';
+import { clear, drop } from '@lykmapipo/mongoose-test-helpers';
 
+process.env.BASE_PATH = __dirname;
+process.env.DATA_PATH = `${__dirname}'/../fixtures`;
+process.env.SEED_PATH = `${__dirname}'/../fixtures`;
 process.env.NODE_ENV = 'test';
 process.env.DEFAULT_LOCALE = 'en';
 process.env.LOCALES = 'en,sw';
@@ -20,5 +23,7 @@ process.env.NOTIFICATION_CHANNELS = 'EMAIL';
 before((done) => connect(done));
 
 before((done) => clear(done));
+
+before((done) => seed(done));
 
 after((done) => drop(done));

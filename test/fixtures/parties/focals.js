@@ -12,7 +12,7 @@ const focals = [
       group: {
         match: {
           namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
+          'strings.name.en': 'Hospitals',
         },
         model: 'Predefine',
       },
@@ -23,10 +23,17 @@ const focals = [
         },
         model: 'Predefine',
       },
+      level: {
+        match: {
+          namespace: 'AdministrativeLevel',
+          'strings.name.en': 'District',
+        },
+        model: 'Predefine',
+      },
       role: {
         match: {
           namespace: 'PartyRole',
-          'strings.name.en': 'Administrator',
+          'strings.name.en': 'Coordinator',
         },
         model: 'Predefine',
       },
@@ -45,7 +52,7 @@ const focals = [
       group: {
         match: {
           namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
+          'strings.name.en': 'Ambulance Services',
         },
         model: 'Predefine',
       },
@@ -56,135 +63,10 @@ const focals = [
         },
         model: 'Predefine',
       },
-      role: {
+      level: {
         match: {
-          namespace: 'PartyRole',
-          'strings.name.en': 'Administrator',
-        },
-        model: 'Predefine',
-      },
-    },
-  },
-  {
-    type: 'Focal',
-    name: 'Nancy Victor',
-    abbreviation: 'NV',
-    locale: 'en',
-    email: 'navish45@example.com',
-    mobile: '255782120002',
-    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
-    confirmedAt: '2018-12-01T11:22:37.185+00:00',
-    populate: {
-      group: {
-        match: {
-          namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
-        },
-        model: 'Predefine',
-      },
-      area: {
-        match: {
-          namespace: 'AdministrativeArea',
-          'strings.name.en': 'Ilala',
-        },
-        model: 'Predefine',
-      },
-      role: {
-        match: {
-          namespace: 'PartyRole',
-          'strings.name.en': 'Administrator',
-        },
-        model: 'Predefine',
-      },
-    },
-  },
-  {
-    type: 'Focal',
-    name: 'Edgar Vitus Mlowe',
-    abbreviation: 'EVM',
-    locale: 'en',
-    email: 'mloweedgarvitus@example.com',
-    mobile: '255654988007',
-    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
-    confirmedAt: '2018-12-01T11:22:37.185+00:00',
-    populate: {
-      group: {
-        match: {
-          namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
-        },
-        model: 'Predefine',
-      },
-      area: {
-        match: {
-          namespace: 'AdministrativeArea',
-          'strings.name.en': 'Ilala',
-        },
-        model: 'Predefine',
-      },
-      role: {
-        match: {
-          namespace: 'PartyRole',
-          'strings.name.en': 'Administrator',
-        },
-        model: 'Predefine',
-      },
-    },
-  },
-  {
-    type: 'Focal',
-    name: 'Beatrice Charles',
-    abbreviation: 'BC',
-    locale: 'en',
-    email: 'charsbeaty@example.com',
-    mobile: '255687902003',
-    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
-    confirmedAt: '2018-12-01T11:22:37.185+00:00',
-    populate: {
-      group: {
-        match: {
-          namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
-        },
-        model: 'Predefine',
-      },
-      area: {
-        match: {
-          namespace: 'AdministrativeArea',
-          'strings.name.en': 'Ilala',
-        },
-        model: 'Predefine',
-      },
-      role: {
-        match: {
-          namespace: 'PartyRole',
-          'strings.name.en': 'Administrator',
-        },
-        model: 'Predefine',
-      },
-    },
-  },
-  {
-    type: 'Focal',
-    name: 'Richard Aggrey',
-    abbreviation: 'RA',
-    locale: 'en',
-    email: 'richardaggrey7@example.com',
-    mobile: '255658040007',
-    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
-    confirmedAt: '2018-12-01T11:22:37.185+00:00',
-    populate: {
-      group: {
-        match: {
-          namespace: 'PartyGroup',
-          'strings.name.en': 'Unknown',
-        },
-        model: 'Predefine',
-      },
-      area: {
-        match: {
-          namespace: 'AdministrativeArea',
-          'strings.name.en': 'Ilala',
+          namespace: 'AdministrativeLevel',
+          'strings.name.en': 'District',
         },
         model: 'Predefine',
       },

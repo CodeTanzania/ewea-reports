@@ -1,22 +1,6 @@
 const agencies = [
   {
     type: 'Agency',
-    name: 'People’s Defence Force',
-    abbreviation: 'PDF',
-    locale: 'en',
-    email: 'tpdf@example.com',
-    mobile: '255754000001',
-  },
-  {
-    type: 'Agency',
-    name: 'National Roads Agency',
-    abbreviation: 'NAROADS',
-    locale: 'en',
-    email: 'tanroads@example.com',
-    mobile: '255754000002',
-  },
-  {
-    type: 'Agency',
     name: 'Meteorological Agency',
     abbreviation: 'MA',
     locale: 'en',
