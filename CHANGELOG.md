@@ -1,3 +1,17 @@
+#### 0.3.0 (2020-04-29)
+
+##### Chores
+
+* **deps:**  force latest version & audit fix ([14456dd7](https://github.com/codetanzania/ewea-reports/commit/14456dd720c0e96221b68da73736f7c669ce429f))
+
+##### Documentation Changes
+
+* **structure:**  improve party analysis report structure ([a3c5a473](https://github.com/codetanzania/ewea-reports/commit/a3c5a473d54095ce7dcf57ccac1162529d9b8789))
+
+##### New Features
+
+* **party-analysis:**  add levels, areas, groups & roles breakdown ([51be69aa](https://github.com/codetanzania/ewea-reports/commit/51be69aa638987f51c46e2ef60e975a5bb27f1fe))
+
 #### 0.2.0 (2020-04-29)
 
 ##### Chores

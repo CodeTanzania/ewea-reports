@@ -1,6 +1,6 @@
 {
   "name": "@codetanzania/ewea-reports",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Common reports for EWEA",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -110,7 +110,7 @@
     "nyc": "^15.0.1",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.7.4",
+    "rollup": "^2.7.5",
     "shelljs": "^0.8.4"
   },
   "peerDependencies": {
