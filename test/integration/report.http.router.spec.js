@@ -16,7 +16,19 @@ describe('Reports Rest API', () => {
       .expect('Content-Type', /json/)
       .end((error, { body }) => {
         expect(error).to.not.exist;
-        expect(body).to.exist;
+        expect(body).to.exist.and.be.an('object');
+        expect(body.data).to.exist.and.be.an('object');
+        expect(body.data.parties).to.be.eql({
+          total: 4,
+          agency: 2,
+          focal: 2,
+          level: 4, // FIX
+          area: 4, // FIX
+          group: 4, // FIX
+          role: 4, // FIX
+          active: 4,
+          inactive: 0,
+        });
         done(error, body);
       });
   });

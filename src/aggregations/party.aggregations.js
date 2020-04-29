@@ -413,19 +413,69 @@ export const getPartyBaseAggregation = (criteria = {}) => {
   // project default on relations
   base.project(PARTY_DEFAULT_PROJECTION);
 
+  // add base projection
+  base.project(PARTY_BASE_PROJECTION);
+
   // TODO: project per relations before add metrics
 
   // add extra metric fields
   base.addFields(PARTY_BASE_METRIC_FIELDS);
 
-  // add base projection
-  base.project(PARTY_BASE_PROJECTION);
-
   // return party base aggregation
   return base;
 };
 
-// TODO: metrics only aggregation; getPartyMetrics/getPartyOverview
+/**
+ * @function getPartyOverview
+ * @name getPartyOverview
+ * @description Create `Party` overview analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid party overview analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.4.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getPartyOverview({ ... });
+ * //=> { total: 7, ... }
+ *
+ */
+export const getPartyOverview = (criteria, done) => {
+  // normalize arguments
+  const filter = isFunction(criteria) ? {} : criteria;
+  const cb = isFunction(criteria) ? criteria : done;
+
+  // obtain party base aggregation
+  const base = getPartyBaseAggregation(filter);
+
+  // add facets
+  const facets = {
+    ...PARTY_FACET_OVERVIEW,
+  };
+  base.facet(facets);
+
+  // run aggregation
+  const aggregate = (next) => base.exec(next);
+  const normalize = (result, next) => {
+    // ensure data
+    const { overview } = safeMergeObjects(...result);
+
+    // normalize result
+    const data = safeMergeObjects(...overview);
+
+    // return normalize result
+    return next(null, data);
+  };
+
+  // return
+  const tasks = [aggregate, normalize];
+  return waterfall(tasks, cb);
+};
 
 /**
  * @function getPartyAnalysis
