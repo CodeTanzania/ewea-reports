@@ -1,3 +1,18 @@
+#### 0.2.0 (2020-04-29)
+
+##### Chores
+
+* **deps:**  force latest version & audit fix ([b382cd48](https://github.com/codetanzania/ewea-reports/commit/b382cd484244bda168578d69f78b67e55e682fdc))
+
+##### New Features
+
+*  implement workforce analysis ([c9494604](https://github.com/codetanzania/ewea-reports/commit/c9494604b446b8b028db4c29deecc3f0853af73f))
+* **aggregations:**  improve party base metrics fields and projections ([82a9d0a9](https://github.com/codetanzania/ewea-reports/commit/82a9d0a99dd4462ce91717ee1c5a801585515199))
+
+##### Tests
+
+*  extend party aggregation assertions ([dc7b3d70](https://github.com/codetanzania/ewea-reports/commit/dc7b3d70cbb2e56800b4418f0a6a1965023cac01))
+
 #### 0.1.0 (2020-04-28)
 
 ##### Chores

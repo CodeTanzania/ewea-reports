@@ -29,10 +29,10 @@ npm install @codetanzania/ewea-reports --save
 ## Usage
 
 ```js
-import { start } from '@codetanzania/ewea-reports';
+import { getPartyAnalysis } from '@codetanzania/ewea-reports';
 
-// fire the http server
-start(error => { ... });
+const criteria = { ... };
+getPartyAnalysis(criteria, (error, report) => { ... });
 ```
 
 ## Testing
