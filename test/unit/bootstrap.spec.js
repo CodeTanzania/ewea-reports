@@ -1,5 +1,8 @@
 import '@codetanzania/ewea-internals';
 
+process.env.BASE_PATH = __dirname;
+process.env.DATA_PATH = `${__dirname}'/../fixtures`;
+process.env.SEED_PATH = `${__dirname}'/../fixtures`;
 process.env.NODE_ENV = 'test';
 process.env.DEFAULT_LOCALE = 'en';
 process.env.LOCALES = 'en,sw';
