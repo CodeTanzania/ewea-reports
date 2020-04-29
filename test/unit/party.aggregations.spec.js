@@ -6,8 +6,13 @@ import {
   PARTY_BASE_AREA_PROJECTION,
   PARTY_BASE_GROUP_PROJECTION,
   PARTY_BASE_ROLE_PROJECTION,
+  PARTY_DEFAULT_PROJECTION,
   PARTY_BASE_PROJECTION,
   PARTY_FACET_OVERVIEW,
+  PARTY_FACET_OVERALL_LEVEL,
+  PARTY_FACET_OVERALL_AREA,
+  PARTY_FACET_OVERALL_GROUP,
+  PARTY_FACET_OVERALL_ROLE,
   getPartyBaseAggregation,
 } from '../../src';
 
@@ -44,12 +49,32 @@ describe('Party Aggregations', () => {
     expect(PARTY_BASE_ROLE_PROJECTION).to.exist.and.be.an('object');
   });
 
+  it('should have default projection', () => {
+    expect(PARTY_DEFAULT_PROJECTION).to.exist.and.be.an('object');
+  });
+
   it('should have base projection', () => {
     expect(PARTY_BASE_PROJECTION).to.exist.and.be.an('object');
   });
 
   it('should have overview facet', () => {
     expect(PARTY_FACET_OVERVIEW).to.exist.and.be.an('object');
+  });
+
+  it('should have overall level facet', () => {
+    expect(PARTY_FACET_OVERALL_LEVEL).to.exist.and.be.an('object');
+  });
+
+  it('should have overall area facet', () => {
+    expect(PARTY_FACET_OVERALL_AREA).to.exist.and.be.an('object');
+  });
+
+  it('should have overall group facet', () => {
+    expect(PARTY_FACET_OVERALL_GROUP).to.exist.and.be.an('object');
+  });
+
+  it('should have overall role facet', () => {
+    expect(PARTY_FACET_OVERALL_ROLE).to.exist.and.be.an('object');
   });
 
   it('should expose base factory', () => {

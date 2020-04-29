@@ -28,22 +28,34 @@
   },
   overall: {
     levels: [{ 
-      level: { name: { en: String }, color: String, weight: Number }, 
+      _id: ObjectId,
+      name: { en: String }, 
+      color: String, 
+      weight: Number, 
       agency: Number, 
       focal: Number 
     }],
     areas: [{ 
-      area: { name: { en: String }, color: String, weight: Number }, 
+      _id: ObjectId,
+      name: { en: String }, 
+      color: String, 
+      weight: Number, 
       agency: Number, 
       focal: Number 
     }],
     groups: [{ 
-      group: { name: { en: String }, color: String, weight: Number }, 
+      _id: ObjectId,
+      name: { en: String }, 
+      color: String, 
+      weight: Number, 
       agency: Number, 
       focal: Number 
     }],
     roles: [{ 
-      role: { name: { en: String }, color: String, weight: Number }, 
+      _id: ObjectId,
+      name: { en: String }, 
+      color: String, 
+      weight: Number, 
       agency: Number, 
       focal: Number 
     }]

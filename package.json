@@ -74,9 +74,9 @@
   "homepage": "https://github.com/codetanzania/ewea-reports",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-env": "^7.9.6",
     "@babel/register": "^7.9.0",
     "@benmaruchu/faker": "^4.3.0",
     "@commitlint/cli": "^8.3.5",
@@ -110,7 +110,7 @@
     "nyc": "^15.0.1",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.7.3",
+    "rollup": "^2.7.4",
     "shelljs": "^0.8.4"
   },
   "peerDependencies": {
@@ -118,7 +118,7 @@
   },
   "dependencies": {
     "@codetanzania/emis-stakeholder": ">=2.6.0",
-    "@codetanzania/ewea-common": ">=0.9.0",
+    "@codetanzania/ewea-common": ">=0.10.0",
     "@codetanzania/ewea-event": ">=0.9.1",
     "@codetanzania/ewea-internals": ">=0.11.0",
     "@lykmapipo/common": ">=0.33.0",
