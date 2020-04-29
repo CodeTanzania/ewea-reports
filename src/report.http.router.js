@@ -1,6 +1,8 @@
 import { getString } from '@lykmapipo/env';
 import { Router } from '@lykmapipo/express-rest-actions';
 
+import { getPartyAnalysis } from './aggregations/party.aggregations';
+
 /* constants */
 const API_VERSION = getString('API_VERSION', '1.0.0');
 const PATH_OVERVIEW = '/reports/overviews';
@@ -150,9 +152,12 @@ router.get(PATH_RESOURCES, (request, response) => {
  * @version 1.0.0
  * @public
  */
-router.get(PATH_PARTIES, (request, response) => {
-  response.ok({
-    overview: { agency: 14, focal: 127 },
+router.get(PATH_PARTIES, (request, response, next) => {
+  return getPartyAnalysis({}, (error, report) => {
+    if (error) {
+      return next(error);
+    }
+    return response.ok(report);
   });
 });
 

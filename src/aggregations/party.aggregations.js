@@ -1,3 +1,5 @@
+import { isFunction, merge } from 'lodash';
+import { waterfall } from 'async';
 import { Party } from '@codetanzania/emis-stakeholder';
 
 // start: constants
@@ -27,8 +29,23 @@ export const PARTY_BASE_METRIC_FIELDS = {
     agency: {
       $cond: { if: { $ne: ['$type', PARTY_TYPE_FOCAL] }, then: 1, else: 0 },
     },
+    level: {
+      $cond: { if: { $not: '$level' }, then: 0, else: 1 },
+    },
+    area: {
+      $cond: { if: { $not: '$area' }, then: 0, else: 1 },
+    },
+    group: {
+      $cond: { if: { $not: '$group' }, then: 0, else: 1 },
+    },
+    role: {
+      $cond: { if: { $not: '$role' }, then: 0, else: 1 },
+    },
     active: {
       $cond: { if: { $not: '$deletedAt' }, then: 1, else: 0 },
+    },
+    inactive: {
+      $cond: { if: { $not: '$deletedAt' }, then: 0, else: 1 },
     },
   },
 };
@@ -141,9 +158,43 @@ export const PARTY_BASE_PROJECTION = {
 
 // start: facets
 // order: base, overall to specific
-export const PARTY_FACET_OVERVIEW = {};
 
-// start: functions
+/**
+ * @constant
+ * @name PARTY_FACET_OVERVIEW
+ * @description Party overview facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.2.0
+ * @version 0.1.0
+ */
+export const PARTY_FACET_OVERVIEW = {
+  overview: [
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 1 },
+        agency: { $sum: '$metrics.agency' },
+        focal: { $sum: '$metrics.focal' },
+        level: { $sum: '$metrics.level' },
+        area: { $sum: '$metrics.area' },
+        group: { $sum: '$metrics.group' },
+        role: { $sum: '$metrics.role' },
+        active: { $sum: '$metrics.active' },
+        inactive: { $sum: '$metrics.inactive' },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+      },
+    },
+  ],
+};
+
+// start: aggregations
 // order: base to specific
 
 /**
@@ -179,4 +230,49 @@ export const getPartyBaseAggregation = (criteria = {}) => {
 
   // return party base aggregation
   return base;
+};
+
+/**
+ * @function getPartyAnalysis
+ * @name getPartyAnalysis
+ * @description Create `Party` analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid party analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.2.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getPartyAnalysis({ ... });
+ * //=> { data: { overview: { ... } }, ... }
+ *
+ */
+export const getPartyAnalysis = (criteria, done) => {
+  // normalize arguments
+  const filter = isFunction(criteria) ? {} : criteria;
+  const cb = isFunction(criteria) ? criteria : done;
+
+  // obtain party base aggregation
+  const base = getPartyBaseAggregation(filter);
+
+  // add facets
+  base.facet(PARTY_FACET_OVERVIEW);
+
+  // run aggregation
+  const aggregate = (next) => base.exec(next);
+  const normalize = (result, next) => {
+    // TODO: extract to utils
+    const data = merge(...result);
+    data.overview = merge(...data.overview);
+    return next(null, { data });
+  };
+  const tasks = [aggregate, normalize];
+
+  // return
+  return waterfall(tasks, cb);
 };

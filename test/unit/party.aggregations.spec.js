@@ -7,6 +7,7 @@ import {
   PARTY_BASE_GROUP_PROJECTION,
   PARTY_BASE_ROLE_PROJECTION,
   PARTY_BASE_PROJECTION,
+  PARTY_FACET_OVERVIEW,
   getPartyBaseAggregation,
 } from '../../src';
 
@@ -18,6 +19,10 @@ describe('Party Aggregations', () => {
     expect(PARTY_BASE_METRIC_FIELDS.metrics.agency).to.exist.and.be.an(
       'object'
     );
+    expect(PARTY_BASE_METRIC_FIELDS.metrics.level).to.exist.and.be.an('object');
+    expect(PARTY_BASE_METRIC_FIELDS.metrics.area).to.exist.and.be.an('object');
+    expect(PARTY_BASE_METRIC_FIELDS.metrics.group).to.exist.and.be.an('object');
+    expect(PARTY_BASE_METRIC_FIELDS.metrics.role).to.exist.and.be.an('object');
     expect(PARTY_BASE_METRIC_FIELDS.metrics.active).to.exist.and.be.an(
       'object'
     );
@@ -41,6 +46,10 @@ describe('Party Aggregations', () => {
 
   it('should have base projection', () => {
     expect(PARTY_BASE_PROJECTION).to.exist.and.be.an('object');
+  });
+
+  it('should have overview facet', () => {
+    expect(PARTY_FACET_OVERVIEW).to.exist.and.be.an('object');
   });
 
   it('should expose base factory', () => {
