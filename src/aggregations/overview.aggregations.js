@@ -7,6 +7,26 @@ export const DEFAULT_OVERVIEW_ANALYSIS = {
   parties: { total: 0, agency: 0, focal: 0 },
 };
 
+/**
+ * @function getOverviewAnalysis
+ * @name getOverviewAnalysis
+ * @description Create overview analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid overview analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.4.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getOverviewAnalysis({ ... });
+ * //=> { data: { parties: { ... } }, ... }
+ *
+ */
 export const getOverviewAnalysis = (criteria, done) => {
   // normalize arguments
   const filter = isFunction(criteria) ? {} : criteria;
