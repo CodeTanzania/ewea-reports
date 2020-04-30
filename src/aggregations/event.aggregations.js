@@ -307,19 +307,19 @@ export const EVENT_BASE_AREA_PROJECTION = {
 export const EVENT_DEFAULT_PROJECTION = {
   _id: 1,
   stage: 1,
-  createAt: 1,
+  createdAt: 1,
   updatedAt: 1,
   endedAt: 1,
   metrics: 1,
-  group: { $ifNull: ['$level', DEFAULT_RELATION_GROUP] },
-  type: { $ifNull: ['$level', DEFAULT_RELATION_TYPE] },
+  group: { $ifNull: ['$group', DEFAULT_RELATION_GROUP] },
+  type: { $ifNull: ['$type', DEFAULT_RELATION_TYPE] },
   level: { $ifNull: ['$level', DEFAULT_RELATION_LEVEL] },
-  severity: { $ifNull: ['$level', DEFAULT_RELATION_SEVERITY] },
-  certainty: { $ifNull: ['$level', DEFAULT_RELATION_CERTAINTY] },
-  status: { $ifNull: ['$level', DEFAULT_RELATION_STATUS] },
-  urgency: { $ifNull: ['$level', DEFAULT_RELATION_URGENCY] },
-  response: { $ifNull: ['$level', DEFAULT_RELATION_RESPONSE] },
-  area: { $ifNull: ['$level', DEFAULT_RELATION_AREA] },
+  severity: { $ifNull: ['$severity', DEFAULT_RELATION_SEVERITY] },
+  certainty: { $ifNull: ['$certainty', DEFAULT_RELATION_CERTAINTY] },
+  status: { $ifNull: ['$status', DEFAULT_RELATION_STATUS] },
+  urgency: { $ifNull: ['$urgency', DEFAULT_RELATION_URGENCY] },
+  response: { $ifNull: ['$response', DEFAULT_RELATION_RESPONSE] },
+  area: { $ifNull: ['$area', DEFAULT_RELATION_AREA] },
 };
 
 /**
@@ -336,7 +336,7 @@ export const EVENT_DEFAULT_PROJECTION = {
 export const EVENT_BASE_PROJECTION = {
   _id: 1,
   stage: 1,
-  createAt: 1,
+  createdAt: 1,
   updatedAt: 1,
   endedAt: 1,
   metrics: 1,
@@ -412,6 +412,14 @@ export const EVENT_FACET_OVERVIEW = {
 export const getEventBaseAggregation = (criteria = {}) => {
   // initialize event base aggregation
   const base = Event.lookup(criteria);
+
+  // project default on relations
+  base.project(EVENT_DEFAULT_PROJECTION);
+
+  // add base projection
+  base.project(EVENT_BASE_PROJECTION);
+
+  // TODO: project per relations before add metrics
 
   // add extra metric fields
   base.addFields(EVENT_BASE_METRIC_FIELDS);

@@ -10,7 +10,7 @@ import {
 } from '../../src';
 
 describe('Party Aggregations', () => {
-  it('should add extra metric fields', (done) => {
+  it('should provide base aggregations', (done) => {
     getPartyBaseAggregation().exec((error, report) => {
       expect(error).to.not.exist;
       expect(report).to.exist;

@@ -26,4 +26,6 @@ before((done) => clear(done));
 
 before((done) => seed(done));
 
+after((done) => clear(done));
+
 after((done) => drop(done));
