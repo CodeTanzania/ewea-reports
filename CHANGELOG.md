@@ -1,3 +1,23 @@
+#### 0.5.0 (2020-05-01)
+
+##### Chores
+
+* **deps:**
+  *  force latest version & audit fix ([e045db0b](https://github.com/codetanzania/ewea-reports/commit/e045db0b458c85aa034d674ec19a19449327ab23))
+  *  force latest version & audit fix ([61678dd0](https://github.com/codetanzania/ewea-reports/commit/61678dd0cb9f3e076b75424b7fd4acd9b21ba804))
+
+##### New Features
+
+* **event-aggregations:**
+  *  implement event overview analysis ([33579cd0](https://github.com/codetanzania/ewea-reports/commit/33579cd0ea9004ea75fb55dfce1969323e82e94c))
+  *  implement overall event analysis ([abd6a18a](https://github.com/codetanzania/ewea-reports/commit/abd6a18ac3a27df3492f0db4ea2d9010bd6307e9))
+  *  define common facets ([df8925b9](https://github.com/codetanzania/ewea-reports/commit/df8925b90b96c7c77b4122c6c2ab1991b610bc7c))
+  *  exclude agencies & focals ([9aaffbdd](https://github.com/codetanzania/ewea-reports/commit/9aaffbddd71e4f46f5abd179bfeeb9fe5dccfc20))
+  *  improve metrics fields ([5a33df1e](https://github.com/codetanzania/ewea-reports/commit/5a33df1e16c8ea98617bbf07fdecc29ca9d2779f))
+  *  improve base provider with default related ([3ea524cc](https://github.com/codetanzania/ewea-reports/commit/3ea524cc7d28a4096e7da537232943ac6be15639))
+  *  add metric, projection and overview facet ([48987527](https://github.com/codetanzania/ewea-reports/commit/4898752758c00a030a826d42887b1e44d72c8dc0))
+* **event-aggregation:**  define event group facet ([7e69a9b7](https://github.com/codetanzania/ewea-reports/commit/7e69a9b744180a4254953862332744a8085e3e61))
+
 #### 0.4.0 (2020-04-29)
 
 ##### Chores
