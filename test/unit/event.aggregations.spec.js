@@ -13,6 +13,14 @@ import {
   EVENT_BASE_AREA_PROJECTION,
   EVENT_FACET_OVERVIEW,
   EVENT_FACET_OVERALL_GROUP,
+  EVENT_FACET_OVERALL_TYPE,
+  EVENT_FACET_OVERALL_LEVEL,
+  EVENT_FACET_OVERALL_SEVERITY,
+  EVENT_FACET_OVERALL_CERTAINTY,
+  EVENT_FACET_OVERALL_STATUS,
+  EVENT_FACET_OVERALL_URGENCY,
+  EVENT_FACET_OVERALL_RESPONSE,
+  EVENT_FACET_OVERALL_AREA,
   getEventBaseAggregation,
 } from '../../src';
 
@@ -70,6 +78,38 @@ describe('Event Aggregations', () => {
 
   it('should have overall group facet', () => {
     expect(EVENT_FACET_OVERALL_GROUP).to.exist.and.be.an('object');
+  });
+
+  it('should have overall type facet', () => {
+    expect(EVENT_FACET_OVERALL_TYPE).to.exist.and.be.an('object');
+  });
+
+  it('should have overall level facet', () => {
+    expect(EVENT_FACET_OVERALL_LEVEL).to.exist.and.be.an('object');
+  });
+
+  it('should have overall severity facet', () => {
+    expect(EVENT_FACET_OVERALL_SEVERITY).to.exist.and.be.an('object');
+  });
+
+  it('should have overall certainty facet', () => {
+    expect(EVENT_FACET_OVERALL_CERTAINTY).to.exist.and.be.an('object');
+  });
+
+  it('should have overall status facet', () => {
+    expect(EVENT_FACET_OVERALL_STATUS).to.exist.and.be.an('object');
+  });
+
+  it('should have overall urgency facet', () => {
+    expect(EVENT_FACET_OVERALL_URGENCY).to.exist.and.be.an('object');
+  });
+
+  it('should have overall response facet', () => {
+    expect(EVENT_FACET_OVERALL_RESPONSE).to.exist.and.be.an('object');
+  });
+
+  it('should have overall area facet', () => {
+    expect(EVENT_FACET_OVERALL_AREA).to.exist.and.be.an('object');
   });
 
   it('should expose base factory', () => {

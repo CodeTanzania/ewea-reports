@@ -398,7 +398,7 @@ export const EVENT_FACET_OVERVIEW = {
  * @version 0.1.0
  */
 export const EVENT_FACET_OVERALL_GROUP = {
-  levels: [
+  groups: [
     {
       $group: {
         _id: '$group._id',
@@ -412,6 +412,294 @@ export const EVENT_FACET_OVERALL_GROUP = {
         abbreviation: { $first: '$group.abbreviation' },
         color: { $first: '$group.color' },
         weight: { $first: '$group.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_TYPE
+ * @description Overall `Event` breakdown by type facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_TYPE = {
+  types: [
+    {
+      $group: {
+        _id: '$type._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$type.namespace' },
+        name: { $first: '$type.name' },
+        abbreviation: { $first: '$type.abbreviation' },
+        color: { $first: '$type.color' },
+        weight: { $first: '$type.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_LEVEL
+ * @description Overall `Event` breakdown by level facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_LEVEL = {
+  levels: [
+    {
+      $group: {
+        _id: '$level._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$level.namespace' },
+        name: { $first: '$level.name' },
+        abbreviation: { $first: '$level.abbreviation' },
+        color: { $first: '$level.color' },
+        weight: { $first: '$level.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_SEVERITY
+ * @description Overall `Event` breakdown by severity facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_SEVERITY = {
+  severities: [
+    {
+      $group: {
+        _id: '$severity._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$severity.namespace' },
+        name: { $first: '$severity.name' },
+        abbreviation: { $first: '$severity.abbreviation' },
+        color: { $first: '$severity.color' },
+        weight: { $first: '$severity.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_CERTAINTY
+ * @description Overall `Event` breakdown by certainty facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_CERTAINTY = {
+  certainties: [
+    {
+      $group: {
+        _id: '$certainty._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$certainty.namespace' },
+        name: { $first: '$certainty.name' },
+        abbreviation: { $first: '$certainty.abbreviation' },
+        color: { $first: '$certainty.color' },
+        weight: { $first: '$certainty.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_STATUS
+ * @description Overall `Event` breakdown by status facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_STATUS = {
+  statuses: [
+    {
+      $group: {
+        _id: '$status._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$status.namespace' },
+        name: { $first: '$status.name' },
+        abbreviation: { $first: '$status.abbreviation' },
+        color: { $first: '$status.color' },
+        weight: { $first: '$status.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_URGENCY
+ * @description Overall `Event` breakdown by urgency facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_URGENCY = {
+  urgencies: [
+    {
+      $group: {
+        _id: '$urgency._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$urgency.namespace' },
+        name: { $first: '$urgency.name' },
+        abbreviation: { $first: '$urgency.abbreviation' },
+        color: { $first: '$urgency.color' },
+        weight: { $first: '$urgency.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_RESPONSE
+ * @description Overall `Event` breakdown by response facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_RESPONSE = {
+  responses: [
+    {
+      $group: {
+        _id: '$response._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$response.namespace' },
+        name: { $first: '$response.name' },
+        abbreviation: { $first: '$response.abbreviation' },
+        color: { $first: '$response.color' },
+        weight: { $first: '$response.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_AREA
+ * @description Overall `Event` breakdown by area facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_AREA = {
+  areas: [
+    {
+      $group: {
+        _id: '$area._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$area.namespace' },
+        name: { $first: '$area.name' },
+        abbreviation: { $first: '$area.abbreviation' },
+        color: { $first: '$area.color' },
+        weight: { $first: '$area.weight' },
       },
     },
     {
