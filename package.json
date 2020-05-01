@@ -126,6 +126,7 @@
     "@lykmapipo/express-common": ">=0.18.2",
     "@lykmapipo/express-rest-actions": ">=0.8.14",
     "@lykmapipo/file": ">=0.1.23",
+    "@lykmapipo/mongoose-aggregatable": ">=0.3.0",
     "@lykmapipo/mongoose-common": ">=0.33.0",
     "@lykmapipo/mongoose-exportable": ">=0.3.27",
     "@lykmapipo/mongoose-sequenceable": ">=0.2.13",

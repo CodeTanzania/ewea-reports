@@ -19,6 +19,7 @@ import { Event } from '@codetanzania/ewea-event';
 // order: base to specific
 
 const EVENT_STAGE_ALERT = 'Alert';
+const EVENT_AGGREGATION_EXCLUDE = ['agencies', 'agency', 'focals', 'focal'];
 const DEFAULT_RELATION_GROUP = safeMergeObjects(DEFAULT_PREDEFINE_RELATION, {
   namespace: PREDEFINE_NAMESPACE_EVENTGROUP,
 });
@@ -413,7 +414,8 @@ export const getEventBaseAggregation = (criteria = {}) => {
   // TODO: ignore agencies & focals unwind
 
   // initialize event base aggregation
-  const base = Event.lookup(criteria);
+  const options = { exclude: EVENT_AGGREGATION_EXCLUDE };
+  const base = Event.lookup(criteria, options);
 
   // project default on relations
   base.project(EVENT_DEFAULT_PROJECTION);
