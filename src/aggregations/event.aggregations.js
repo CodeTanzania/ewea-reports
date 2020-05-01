@@ -410,6 +410,8 @@ export const EVENT_FACET_OVERVIEW = {
  *
  */
 export const getEventBaseAggregation = (criteria = {}) => {
+  // TODO: ignore agencies & focals unwind
+
   // initialize event base aggregation
   const base = Event.lookup(criteria);
 
