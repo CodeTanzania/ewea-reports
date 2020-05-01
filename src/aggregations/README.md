@@ -29,6 +29,13 @@
       role: Number,
       active: Number,
       inactive: Number
+    },
+    events: {
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
     }
   }
 }

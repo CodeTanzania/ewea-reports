@@ -30,10 +30,12 @@ npm install @codetanzania/ewea-reports --save
 
 ```js
 import {
+  getOverviewAnalysis,
   getEventAnalysis,
   getPartyAnalysis
 } from '@codetanzania/ewea-reports';
 
+getOverviewAnalysis(<criteria>, (error, report) => { ... });
 getEventAnalysis(<criteria>, (error, report) => { ... });
 getPartyAnalysis(<criteria>, (error, report) => { ... });
 ```

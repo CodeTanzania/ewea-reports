@@ -22,6 +22,13 @@ describe('Overview Aggregations', () => {
         active: 4,
         inactive: 0,
       });
+      expect(report.data.events).to.be.eql({
+        total: 1,
+        alert: 0,
+        event: 1,
+        active: 0,
+        ended: 1,
+      });
       done(error, report);
     });
   });

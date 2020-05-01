@@ -2,9 +2,17 @@ import { isFunction } from 'lodash';
 import { parallel } from 'async';
 import { safeMergeObjects } from '@lykmapipo/common';
 import { getPartyOverview } from './party.aggregations';
+import { getEventOverview } from './event.aggregations';
 
 export const DEFAULT_OVERVIEW_ANALYSIS = {
   parties: { total: 0, agency: 0, focal: 0 },
+  events: {
+    total: 0,
+    alert: 0,
+    event: 0,
+    active: 0,
+    ended: 0,
+  },
 };
 
 /**
@@ -34,7 +42,8 @@ export const getOverviewAnalysis = (criteria, done) => {
 
   // tasks
   const parties = (next) => getPartyOverview(filter, next);
-  const tasks = { parties };
+  const events = (next) => getEventOverview(filter, next);
+  const tasks = { parties, events };
 
   // return
   return parallel(tasks, (error, overviews) => {
