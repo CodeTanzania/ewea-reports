@@ -154,7 +154,24 @@ describe('Reports Rest API', () => {
       .expect('Content-Type', /json/)
       .end((error, { body }) => {
         expect(error).to.not.exist;
-        expect(body).to.exist;
+        expect(body).to.exist.and.be.an('object');
+        expect(body.data).to.exist.and.be.an('object');
+        expect(body.data.overview).to.be.eql({
+          total: 1,
+          alert: 0,
+          event: 1,
+          active: 0,
+          ended: 1,
+        });
+        expect(body.data.overall.groups).to.exist.and.be.an('array');
+        expect(body.data.overall.types).to.exist.and.be.an('array');
+        expect(body.data.overall.levels).to.exist.and.be.an('array');
+        expect(body.data.overall.severities).to.exist.and.be.an('array');
+        expect(body.data.overall.certainties).to.exist.and.be.an('array');
+        expect(body.data.overall.statuses).to.exist.and.be.an('array');
+        expect(body.data.overall.urgencies).to.exist.and.be.an('array');
+        expect(body.data.overall.responses).to.exist.and.be.an('array');
+        expect(body.data.overall.areas).to.exist.and.be.an('array');
         done(error, body);
       });
   });

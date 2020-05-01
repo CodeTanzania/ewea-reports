@@ -2,6 +2,7 @@ import { getString } from '@lykmapipo/env';
 import { Router } from '@lykmapipo/express-rest-actions';
 
 import { getPartyAnalysis } from './aggregations/party.aggregations';
+import { getEventAnalysis } from './aggregations/event.aggregations';
 import { getOverviewAnalysis } from './aggregations/overview.aggregations';
 
 /* constants */
@@ -193,9 +194,12 @@ router.get(PATH_ALERTS, (request, response) => {
  * @version 1.0.0
  * @public
  */
-router.get(PATH_EVENTS, (request, response) => {
-  response.ok({
-    overview: { total: 14, active: 9, ended: 5 },
+router.get(PATH_EVENTS, (request, response, next) => {
+  return getEventAnalysis({}, (error, report) => {
+    if (error) {
+      return next(error);
+    }
+    return response.ok(report);
   });
 });
 

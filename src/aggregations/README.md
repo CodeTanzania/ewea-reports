@@ -15,7 +15,7 @@
 
 ## Structures
 
-### Overview Report
+### Overview Analysis
 
 ```js
 {
@@ -34,7 +34,7 @@
 }
 ```
 
-### Party Report
+### Party Analysis
 
 ```js
 {
@@ -80,6 +80,121 @@
       weight: Number,
       agency: Number,
       focal: Number
+    }]
+  }
+}
+```
+
+### Event Analysis
+
+```js
+{
+  overview: {
+    total: Number,
+    alert: Number,
+    event: Number,
+    active: Number,
+    ended: Number
+  },
+  overall: {
+    groups: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    types: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    levels: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    severities: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    certainties: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    statuses: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    urgencies: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    responses: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
+    }],
+    areas: [{
+      _id: ObjectId,
+      name: { en: String },
+      color: String,
+      weight: Number,
+      total: Number,
+      alert: Number,
+      event: Number,
+      active: Number,
+      ended: Number
     }]
   }
 }

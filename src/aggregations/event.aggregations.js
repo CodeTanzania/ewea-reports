@@ -9,8 +9,8 @@ import {
   PREDEFINE_NAMESPACE_EVENTURGENCY,
   PREDEFINE_NAMESPACE_EVENTRESPONSE,
 } from '@codetanzania/ewea-internals';
-// import { isFunction } from 'lodash';
-// import { waterfall } from 'async';
+import { isFunction } from 'lodash';
+import { waterfall } from 'async';
 import { safeMergeObjects } from '@lykmapipo/common';
 import { DEFAULT_PREDEFINE_RELATION } from '@codetanzania/ewea-common';
 import { Event } from '@codetanzania/ewea-event';
@@ -754,4 +754,91 @@ export const getEventBaseAggregation = (criteria = {}) => {
 
   // return event base aggregation
   return base;
+};
+
+/**
+ * @function getEventAnalysis
+ * @name getEventAnalysis
+ * @description Create `Event` analysis.
+ * @param {object} [criteria={}] conditions which will be applied in analysis
+ * @param {Function} done callback to invoke on success or error
+ * @returns {object|Error} valid event analysis or error
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ * @static
+ * @public
+ * @example
+ *
+ * getEventAnalysis({ ... });
+ * //=> { data: { overview: { ... } }, ... }
+ *
+ */
+export const getEventAnalysis = (criteria, done) => {
+  // normalize arguments
+  const filter = isFunction(criteria) ? {} : criteria;
+  const cb = isFunction(criteria) ? criteria : done;
+
+  // obtain party base aggregation
+  const base = getEventBaseAggregation(filter);
+
+  // add facets
+  const facets = {
+    ...EVENT_FACET_OVERVIEW,
+    ...EVENT_FACET_OVERALL_GROUP,
+    ...EVENT_FACET_OVERALL_TYPE,
+    ...EVENT_FACET_OVERALL_LEVEL,
+    ...EVENT_FACET_OVERALL_SEVERITY,
+    ...EVENT_FACET_OVERALL_CERTAINTY,
+    ...EVENT_FACET_OVERALL_STATUS,
+    ...EVENT_FACET_OVERALL_URGENCY,
+    ...EVENT_FACET_OVERALL_RESPONSE,
+    ...EVENT_FACET_OVERALL_AREA,
+  };
+  base.facet(facets);
+
+  // run aggregation
+  const aggregate = (next) => base.exec(next);
+  const normalize = (result, next) => {
+    // TODO: extract to utils
+
+    // ensure data
+    const {
+      overview,
+      groups,
+      types,
+      levels,
+      severities,
+      certainties,
+      statuses,
+      urgencies,
+      responses,
+      areas,
+    } = safeMergeObjects(...result);
+
+    // normalize result
+    const data = safeMergeObjects({
+      overview: safeMergeObjects(...overview),
+      overall: {
+        groups,
+        types,
+        levels,
+        severities,
+        certainties,
+        statuses,
+        urgencies,
+        responses,
+        areas,
+      },
+    });
+
+    // return normalize result
+    return next(null, { data });
+  };
+
+  // return
+  const tasks = [aggregate, normalize];
+  return waterfall(tasks, cb);
 };
