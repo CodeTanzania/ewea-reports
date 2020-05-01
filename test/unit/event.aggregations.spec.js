@@ -11,6 +11,8 @@ import {
   EVENT_BASE_URGENCY_PROJECTION,
   EVENT_BASE_RESPONSE_PROJECTION,
   EVENT_BASE_AREA_PROJECTION,
+  EVENT_FACET_OVERVIEW,
+  EVENT_FACET_OVERALL_GROUP,
   getEventBaseAggregation,
 } from '../../src';
 
@@ -60,6 +62,14 @@ describe('Event Aggregations', () => {
 
   it('should have base area projection', () => {
     expect(EVENT_BASE_AREA_PROJECTION).to.exist.and.be.an('object');
+  });
+
+  it('should have overview facet', () => {
+    expect(EVENT_FACET_OVERVIEW).to.exist.and.be.an('object');
+  });
+
+  it('should have overall group facet', () => {
+    expect(EVENT_FACET_OVERALL_GROUP).to.exist.and.be.an('object');
   });
 
   it('should expose base factory', () => {

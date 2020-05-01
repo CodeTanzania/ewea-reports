@@ -386,6 +386,42 @@ export const EVENT_FACET_OVERVIEW = {
   ],
 };
 
+/**
+ * @constant
+ * @name EVENT_FACET_OVERALL_GROUP
+ * @description Overall `Event` breakdown by group facet.
+ * @type {object}
+ *
+ * @author lally elias <lallyelias87@gmail.com>
+ * @license MIT
+ * @since 0.5.0
+ * @version 0.1.0
+ */
+export const EVENT_FACET_OVERALL_GROUP = {
+  levels: [
+    {
+      $group: {
+        _id: '$group._id',
+        total: { $sum: 1 },
+        alert: { $sum: '$metrics.alert' },
+        event: { $sum: '$metrics.event' },
+        active: { $sum: '$metrics.active' },
+        ended: { $sum: '$metrics.ended' },
+        namespace: { $first: '$group.namespace' },
+        name: { $first: '$group.name' },
+        abbreviation: { $first: '$group.abbreviation' },
+        color: { $first: '$group.color' },
+        weight: { $first: '$group.weight' },
+      },
+    },
+    {
+      $sort: {
+        weight: 1,
+      },
+    },
+  ],
+};
+
 // start: aggregations
 // order: base to specific
 
