@@ -1,3 +1,24 @@
+#### 0.6.0 (2020-05-17)
+
+##### Chores
+
+* **deps:**
+  *  force latest version & audit fix ([663b8676](https://github.com/codetanzania/ewea-reports/commit/663b8676dcf96d01f95d317741a050616df730bd))
+  *  force latest version & audit fix ([caae4266](https://github.com/codetanzania/ewea-reports/commit/caae426648eda73daad332e04b7be4b352073261))
+  *  add vehicle dispatch ([cfd36873](https://github.com/codetanzania/ewea-reports/commit/cfd36873137aa5c582fa04370e84a61556d5657e))
+  *  force latest version & audit fix ([bc76e7c2](https://github.com/codetanzania/ewea-reports/commit/bc76e7c217e951c704428524ca969b930441ea7c))
+
+##### New Features
+
+* **dispatch-aggregations:**  implement dispatch overview analysis ([0e163fb7](https://github.com/codetanzania/ewea-reports/commit/0e163fb7b1a676162c1616c3804fee3a36c09734))
+
+##### Tests
+
+*  improve assertions ([4c1933c9](https://github.com/codetanzania/ewea-reports/commit/4c1933c91c26630777c4fc2236eb3e5562fa9062))
+* **fixtures:**
+  *  add event responses ([3d050d66](https://github.com/codetanzania/ewea-reports/commit/3d050d663c4519da39d571960bbfa20bde22926c))
+  *  add vehicle dispatches seeds ([2fea7544](https://github.com/codetanzania/ewea-reports/commit/2fea7544505253da417c4a4f9e44a2c32bb0bdb3))
+
 #### 0.5.0 (2020-05-01)
 
 ##### Chores
