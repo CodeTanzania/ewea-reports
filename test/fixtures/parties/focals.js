@@ -4,8 +4,8 @@ const focals = [
     name: 'Lally Elias',
     abbreviation: 'LE',
     locale: 'en',
-    email: 'lallyelias87@example.com',
-    mobile: '255714095001',
+    email: 'lally.example@example.com',
+    mobile: '255714015001',
     password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
     confirmedAt: '2018-12-01T11:22:37.185+00:00',
     populate: {
@@ -45,7 +45,7 @@ const focals = [
     abbreviation: 'BM',
     locale: 'en',
     email: 'benmaruchu@example.com',
-    mobile: '255719818009',
+    mobile: '255714015002',
     password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
     confirmedAt: '2018-12-01T11:22:37.185+00:00',
     populate: {
@@ -78,6 +78,24 @@ const focals = [
         model: 'Predefine',
       },
     },
+  },
+  {
+    type: 'Focal',
+    name: 'Joe Mdoe',
+    abbreviation: 'JM',
+    locale: 'en',
+    email: 'joe.mdoe@example.com',
+    mobile: '255714015003',
+    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
+  },
+  {
+    type: 'Focal',
+    name: 'Ali Mdoe',
+    abbreviation: 'JM',
+    locale: 'en',
+    email: 'ali.mdoe@example.com',
+    mobile: '255714015004',
+    password: '$2a$10$rwpL/BhU8xY4fkf8SG7fHugF4PCioTJqy8BLU7BZ8N0YV.8Y1dXem',
   },
 ];
 
