@@ -23,14 +23,14 @@ describe('Party Aggregations', () => {
       expect(error).to.not.exist;
       expect(report).to.exist.and.be.an('object');
       expect(report).to.be.eql({
-        total: 4,
+        total: 6,
         agency: 2,
-        focal: 2,
-        level: 4, // FIX
-        area: 4, // FIX
-        group: 4, // FIX
-        role: 4, // FIX
-        active: 4,
+        focal: 4,
+        level: 6, // FIX
+        area: 6, // FIX
+        group: 6, // FIX
+        role: 6, // FIX
+        active: 6,
         inactive: 0,
       });
       done(error, report);
@@ -43,14 +43,14 @@ describe('Party Aggregations', () => {
       expect(report).to.exist.and.be.an('object');
       expect(report.data).to.exist.and.be.an('object');
       expect(report.data.overview).to.be.eql({
-        total: 4,
+        total: 6,
         agency: 2,
-        focal: 2,
-        level: 4, // FIX
-        area: 4, // FIX
-        group: 4, // FIX
-        role: 4, // FIX
-        active: 4,
+        focal: 4,
+        level: 6, // FIX
+        area: 6, // FIX
+        group: 6, // FIX
+        role: 6, // FIX
+        active: 6,
         inactive: 0,
       });
       expect(report.data.overall.levels).to.exist.and.be.an('array');
