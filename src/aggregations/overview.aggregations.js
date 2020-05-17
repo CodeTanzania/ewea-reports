@@ -3,6 +3,7 @@ import { parallel } from 'async';
 import { safeMergeObjects } from '@lykmapipo/common';
 import { getPartyOverview } from './party.aggregations';
 import { getEventOverview } from './event.aggregations';
+import { getDispatchOverview } from './dispatch.aggregations';
 
 export const DEFAULT_OVERVIEW_ANALYSIS = {
   parties: { total: 0, agency: 0, focal: 0 },
@@ -12,6 +13,25 @@ export const DEFAULT_OVERVIEW_ANALYSIS = {
     event: 0,
     active: 0,
     ended: 0,
+  },
+  dispatches: {
+    total: 0,
+    waiting: 0,
+    dispatched: 0,
+    canceled: 0,
+    resolved: 0,
+    minimumWaitTime: 0,
+    maximumWaitTime: 0,
+    averageWaitTime: 0,
+    minimumDispatchTime: 0,
+    maximumDispatchTime: 0,
+    averageDispatchTime: 0,
+    minimumCancelTime: 0,
+    maximumCancelTime: 0,
+    averageCancelTime: 0,
+    minimumResolveTime: 0,
+    maximumResolveTime: 0,
+    averageResolveTime: 0,
   },
 };
 
@@ -43,7 +63,8 @@ export const getOverviewAnalysis = (criteria, done) => {
   // tasks
   const parties = (next) => getPartyOverview(filter, next);
   const events = (next) => getEventOverview(filter, next);
-  const tasks = { parties, events };
+  const dispatches = (next) => getDispatchOverview(filter, next);
+  const tasks = { parties, events, dispatches };
 
   // return
   return parallel(tasks, (error, overviews) => {

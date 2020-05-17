@@ -29,6 +29,25 @@ describe('Overview Aggregations', () => {
         active: 0,
         ended: 1,
       });
+      expect(report.data.dispatches).to.be.eql({
+        total: 1,
+        waiting: 0,
+        dispatched: 1,
+        canceled: 0,
+        resolved: 1,
+        minimumWaitTime: 120000,
+        maximumWaitTime: 120000,
+        averageWaitTime: 120000,
+        minimumDispatchTime: 540000,
+        maximumDispatchTime: 540000,
+        averageDispatchTime: 540000,
+        minimumCancelTime: null,
+        maximumCancelTime: null,
+        averageCancelTime: null,
+        minimumResolveTime: 660000,
+        maximumResolveTime: 660000,
+        averageResolveTime: 660000,
+      });
       done(error, report);
     });
   });

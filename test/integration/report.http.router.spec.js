@@ -189,7 +189,29 @@ describe('Reports Rest API', () => {
       .expect('Content-Type', /json/)
       .end((error, { body }) => {
         expect(error).to.not.exist;
-        expect(body).to.exist;
+        expect(body).to.exist.and.be.an('object');
+        expect(body.data).to.exist.and.be.an('object');
+        expect(body.data.overview).to.be.eql({
+          total: 1,
+          waiting: 0,
+          dispatched: 1,
+          canceled: 0,
+          resolved: 1,
+          minimumWaitTime: 120000,
+          maximumWaitTime: 120000,
+          averageWaitTime: 120000,
+          minimumDispatchTime: 540000,
+          maximumDispatchTime: 540000,
+          averageDispatchTime: 540000,
+          minimumCancelTime: null,
+          maximumCancelTime: null,
+          averageCancelTime: null,
+          minimumResolveTime: 660000,
+          maximumResolveTime: 660000,
+          averageResolveTime: 660000,
+        });
+        expect(body.data.overall.groups).to.exist.and.be.an('array');
+        expect(body.data.overall.types).to.exist.and.be.an('array');
         done(error, body);
       });
   });
