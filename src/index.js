@@ -28,6 +28,7 @@ import reportRouter from './report.http.router';
 export * from './aggregations/changelog.aggregations';
 export * from './aggregations/event.aggregations';
 export * from './aggregations/party.aggregations';
+export * from './aggregations/dispatch.aggregations';
 export * from './aggregations/predefine.aggregations';
 export * from './aggregations/overview.aggregations';
 

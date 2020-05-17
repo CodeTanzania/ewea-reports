@@ -10,7 +10,7 @@
 ## Fields
 
 - All extra metric fields should be added into `metrics` object to avoid collision with other aggregation fields
-- All extra time fields should be in their singular form e.g `active`
+- All extra time fields should be verbs in their singular form e.g `active`
 - All extra time fields should be suffixed with `Time` e.g `activeTime`
 
 ## Structures

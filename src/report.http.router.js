@@ -3,6 +3,7 @@ import { Router } from '@lykmapipo/express-rest-actions';
 
 import { getPartyAnalysis } from './aggregations/party.aggregations';
 import { getEventAnalysis } from './aggregations/event.aggregations';
+import { getDispatchAnalysis } from './aggregations/dispatch.aggregations';
 import { getOverviewAnalysis } from './aggregations/overview.aggregations';
 
 /* constants */
@@ -214,8 +215,13 @@ router.get(PATH_EVENTS, (request, response, next) => {
  * @version 1.0.0
  * @public
  */
-router.get(PATH_DISPATCHES, (request, response) => {
-  response.ok({});
+router.get(PATH_DISPATCHES, (request, response, next) => {
+  return getDispatchAnalysis({}, (error, report) => {
+    if (error) {
+      return next(error);
+    }
+    return response.ok(report);
+  });
 });
 
 /**

@@ -18,7 +18,7 @@ describe('Event Aggregations', () => {
     });
   });
 
-  it('should provide party overview analysis', (done) => {
+  it('should provide event overview analysis', (done) => {
     getEventOverview((error, report) => {
       expect(error).to.not.exist;
       expect(report).to.exist.and.be.an('object');
