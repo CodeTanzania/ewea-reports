@@ -1,11 +1,11 @@
 import { PREDEFINE_NAMESPACE_ADMINISTRATIVELEVEL, PREDEFINE_NAMESPACE_ADMINISTRATIVEAREA, PREDEFINE_NAMESPACE_PARTYGROUP, PREDEFINE_NAMESPACE_PARTYROLE, PREDEFINE_NAMESPACE_EVENTGROUP, PREDEFINE_NAMESPACE_EVENTTYPE, PREDEFINE_NAMESPACE_EVENTLEVEL, PREDEFINE_NAMESPACE_EVENTSEVERITY, PREDEFINE_NAMESPACE_EVENTCERTAINTY, PREDEFINE_NAMESPACE_EVENTSTATUS, PREDEFINE_NAMESPACE_EVENTURGENCY, PREDEFINE_NAMESPACE_EVENTRESPONSE } from '@codetanzania/ewea-internals';
-import { safeMergeObjects, pkg } from '@lykmapipo/common';
+import { safeMergeObjects, parseMs, pkg } from '@lykmapipo/common';
 import { getString, apiVersion as apiVersion$1 } from '@lykmapipo/env';
 import { connect } from '@lykmapipo/mongoose-common';
 import { mount } from '@lykmapipo/express-common';
 import { Router, start as start$1 } from '@lykmapipo/express-rest-actions';
 import { createModels } from '@lykmapipo/file';
-import { isFunction } from 'lodash';
+import { isFunction, mapValues, endsWith } from 'lodash';
 import { waterfall, parallel } from 'async';
 import { Party } from '@codetanzania/emis-stakeholder';
 import { DEFAULT_PREDEFINE_RELATION } from '@codetanzania/ewea-common';
@@ -1425,7 +1425,8 @@ const getEventAnalysis = (criteria, done) => {
   return waterfall(tasks, cb);
 };
 
-// TODO: parse time to human
+// TODO: extract utils
+// TODO: limit exports
 
 // start: constants
 // order: base to specific
@@ -1437,6 +1438,28 @@ const DEFAULT_RELATION_GROUP$2 = safeMergeObjects(DEFAULT_PREDEFINE_RELATION, {
 const DEFAULT_RELATION_TYPE$1 = safeMergeObjects(DEFAULT_PREDEFINE_RELATION, {
   namespace: PREDEFINE_NAMESPACE_EVENTTYPE,
 });
+
+// start: helpers & utils
+// order: base to specific
+
+const normalizeOverview = (overview) => {
+  // ensure report
+  let report = safeMergeObjects(...overview);
+
+  // normalize time(wait, dispatch, cancel & resolve)
+  report = mapValues(report, (value, key) => {
+    const isTimeField = endsWith(key, 'Time');
+    if (isTimeField) {
+      const milliseconds = value || 0;
+      const parsedTime = parseMs(milliseconds);
+      return parsedTime;
+    }
+    return value;
+  });
+
+  // return normalized overview
+  return report;
+};
 
 // start: extra metric fields
 // order: base to specific
@@ -1766,7 +1789,7 @@ const getDispatchOverview = (criteria, done) => {
     const { overview } = safeMergeObjects(...result);
 
     // normalize result
-    const data = safeMergeObjects(...overview);
+    const data = normalizeOverview(overview);
 
     // return normalize result
     return next(null, data);
@@ -1823,7 +1846,7 @@ const getDispatchAnalysis = (criteria, done) => {
 
     // normalize result
     const data = safeMergeObjects({
-      overview: safeMergeObjects(...overview),
+      overview: normalizeOverview(overview),
       overall: { groups, types },
     });
 
