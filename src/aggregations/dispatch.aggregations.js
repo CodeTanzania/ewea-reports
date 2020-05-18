@@ -2,13 +2,14 @@ import {
   PREDEFINE_NAMESPACE_EVENTGROUP,
   PREDEFINE_NAMESPACE_EVENTTYPE,
 } from '@codetanzania/ewea-internals';
-import { isFunction } from 'lodash';
+import { endsWith, isFunction, mapValues } from 'lodash';
 import { waterfall } from 'async';
-import { safeMergeObjects } from '@lykmapipo/common';
+import { safeMergeObjects, parseMs } from '@lykmapipo/common';
 import { DEFAULT_PREDEFINE_RELATION } from '@codetanzania/ewea-common';
 import { VehicleDispatch } from '@codetanzania/ewea-dispatch';
 
-// TODO: parse time to human
+// TODO: extract utils
+// TODO: limit exports
 
 // start: constants
 // order: base to specific
@@ -20,6 +21,28 @@ const DEFAULT_RELATION_GROUP = safeMergeObjects(DEFAULT_PREDEFINE_RELATION, {
 const DEFAULT_RELATION_TYPE = safeMergeObjects(DEFAULT_PREDEFINE_RELATION, {
   namespace: PREDEFINE_NAMESPACE_EVENTTYPE,
 });
+
+// start: helpers & utils
+// order: base to specific
+
+const normalizeOverview = (overview) => {
+  // ensure report
+  let report = safeMergeObjects(...overview);
+
+  // normalize time(wait, dispatch, cancel & resolve)
+  report = mapValues(report, (value, key) => {
+    const isTimeField = endsWith(key, 'Time');
+    if (isTimeField) {
+      const milliseconds = value || 0;
+      const parsedTime = parseMs(milliseconds);
+      return parsedTime;
+    }
+    return value;
+  });
+
+  // return normalized overview
+  return report;
+};
 
 // start: extra metric fields
 // order: base to specific
@@ -349,7 +372,7 @@ export const getDispatchOverview = (criteria, done) => {
     const { overview } = safeMergeObjects(...result);
 
     // normalize result
-    const data = safeMergeObjects(...overview);
+    const data = normalizeOverview(overview);
 
     // return normalize result
     return next(null, data);
@@ -406,7 +429,7 @@ export const getDispatchAnalysis = (criteria, done) => {
 
     // normalize result
     const data = safeMergeObjects({
-      overview: safeMergeObjects(...overview),
+      overview: normalizeOverview(overview),
       overall: { groups, types },
     });
 
