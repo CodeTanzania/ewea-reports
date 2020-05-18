@@ -1,3 +1,15 @@
+#### 0.6.0 (2020-05-18)
+
+##### Chores
+
+* **deps:**
+  *  force latest version & audit fix ([9bcfd93f](https://github.com/codetanzania/ewea-reports/commit/9bcfd93f58bfd354724ddafd1f5208a70b2abb7b))
+  *  force latest version & audit fix ([83b70c55](https://github.com/codetanzania/ewea-reports/commit/83b70c554dc89e9630bfc06ba1d850f2afacd0a9))
+
+##### Refactors
+
+* **dispatch-aggregations:**  parse ms to object of days, hours etc ([d72a7bba](https://github.com/codetanzania/ewea-reports/commit/d72a7bba189deb9fd71cd3f722d1779a4c431ec1))
+
 #### 0.6.0 (2020-05-17)
 
 ##### Chores
