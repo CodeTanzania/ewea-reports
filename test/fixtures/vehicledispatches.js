@@ -129,6 +129,10 @@ const dispatches = [
         match: { namespace: 'VehicleStatus', 'strings.name.en': 'Idle' },
         model: 'Predefine',
       },
+      priority: {
+        match: { namespace: 'Priority', 'strings.name.en': 'Critical' },
+        model: 'Predefine',
+      },
     },
   },
 ];
