@@ -1,3 +1,20 @@
+#### 0.7.0 (2020-06-03)
+
+##### Chores
+
+* **deps:**
+  *  force latest version & audit fix ([c101875a](https://github.com/codetanzania/ewea-reports/commit/c101875ab694464831dfb479b6bdf939a3be6dad))
+  *  force latest version & audit fix ([be2cf872](https://github.com/codetanzania/ewea-reports/commit/be2cf87257fdc3bccb2f6a3fe22f5996eefa9412))
+  *  force latest version & audit fix ([f685e7d8](https://github.com/codetanzania/ewea-reports/commit/f685e7d8a01a7bd993cada7070cfd17396ce8644))
+
+##### Bug Fixes
+
+* **seeds:**  ensure proper data for expectations ([0ab4060b](https://github.com/codetanzania/ewea-reports/commit/0ab4060b6ae74de06108defa26817f734286eb3c))
+
+##### Tests
+
+* **fixtures:**  add priorities seed ([49b2da2b](https://github.com/codetanzania/ewea-reports/commit/49b2da2b97933efe1496e302bdcb7204bcfa13fd))
+
 #### 0.6.1 (2020-05-18)
 
 ##### Chores
