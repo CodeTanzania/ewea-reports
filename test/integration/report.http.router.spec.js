@@ -7,7 +7,7 @@ import {
   partyOverview,
   eventOverview,
   dispatchOverview,
-} from '../fixtures/expectations';
+} from '../expectations';
 
 describe('Reports Rest API', () => {
   before(() => clearHttp());

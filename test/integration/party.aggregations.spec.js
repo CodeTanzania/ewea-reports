@@ -9,7 +9,7 @@ import {
   getPartyAnalysis,
 } from '../../src';
 
-import { partyOverview } from '../fixtures/expectations';
+import { partyOverview } from '../expectations';
 
 describe('Party Aggregations', () => {
   it('should provide base aggregations', (done) => {
