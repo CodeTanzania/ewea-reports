@@ -9,7 +9,7 @@ import {
   getDispatchAnalysis,
 } from '../../src';
 
-import { dispatchOverview } from '../fixtures/expectations';
+import { dispatchOverview } from '../expectations';
 
 describe('Dispatch Aggregations', () => {
   it('should provide base aggregations', (done) => {

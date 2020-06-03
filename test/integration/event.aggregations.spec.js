@@ -9,7 +9,7 @@ import {
   getEventAnalysis,
 } from '../../src';
 
-import { eventOverview } from '../fixtures/expectations';
+import { eventOverview } from '../expectations';
 
 describe('Event Aggregations', () => {
   it('should provide base aggregations', (done) => {

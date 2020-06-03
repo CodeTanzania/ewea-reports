@@ -9,7 +9,7 @@ import {
   partyOverview,
   eventOverview,
   dispatchOverview,
-} from '../fixtures/expectations';
+} from '../expectations';
 
 describe('Overview Aggregations', () => {
   it('should provide overview analysis', (done) => {
