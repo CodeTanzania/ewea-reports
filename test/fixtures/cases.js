@@ -37,7 +37,7 @@ const cases = [
         },
         model: 'Predefine',
       },
-      'victiom.area': {
+      'victim.area': {
         match: { namespace: 'AdministrativeArea', 'strings.name.en': 'Ilala' },
         model: 'Predefine',
       },

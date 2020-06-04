@@ -1,4 +1,4 @@
-const genders = [
+const occupations = [
   {
     namespace: 'PartyOccupation',
     strings: { name: { en: 'Health Care Worker' } },
@@ -10,4 +10,4 @@ const genders = [
   },
 ];
 
-export default genders;
+export default occupations;

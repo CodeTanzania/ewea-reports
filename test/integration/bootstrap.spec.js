@@ -28,7 +28,10 @@ before((done) => connect(done));
 
 before((done) => clear(done));
 
-before((done) => seed(done));
+before((done) => {
+  // enableDebug();
+  return seed(done);
+});
 
 after((done) => clear(done));
 
