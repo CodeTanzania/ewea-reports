@@ -1,5 +1,9 @@
 import { connect, seed } from '@codetanzania/ewea-common';
-import { clear, drop } from '@lykmapipo/mongoose-test-helpers';
+import {
+  clear,
+  drop,
+  // enableDebug
+} from '@lykmapipo/mongoose-test-helpers';
 
 process.env.BASE_PATH = __dirname;
 process.env.DATA_PATH = `${__dirname}'/../fixtures`;

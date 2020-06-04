@@ -15,14 +15,14 @@ const cases = [
     description: 'Severe injury from Floods.',
     reportedAt: '2020-05-04T02:48:48.323Z',
     createdAt: '2020-05-04T02:48:48.323Z',
-    resolvedAt: '2020-05-04T02:59:48.323Z',
+    dischargedAt: '2020-05-04T02:59:48.323Z',
     remarks: 'Handled.',
     populate: {
       reporter: {
         match: { name: 'Ali Mdoe' },
         model: 'Party',
       },
-      resolver: {
+      discharger: {
         match: { name: 'Ali Mdoe' },
         model: 'Party',
       },
@@ -32,7 +32,7 @@ const cases = [
       },
       'victim.occupation': {
         match: {
-          namespace: 'PartyGender',
+          namespace: 'PartyOccupation',
           'strings.name.en': 'Health Care Worker',
         },
         model: 'Predefine',
