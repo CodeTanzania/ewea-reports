@@ -37,6 +37,13 @@ const cases = [
         },
         model: 'Predefine',
       },
+      'victim.nationality': {
+        match: {
+          namespace: 'PartyNationality',
+          'strings.name.en': 'Tanzanian',
+        },
+        model: 'Predefine',
+      },
       'victim.area': {
         match: { namespace: 'AdministrativeArea', 'strings.name.en': 'Ilala' },
         model: 'Predefine',
