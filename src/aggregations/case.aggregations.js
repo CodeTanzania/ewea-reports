@@ -1,11 +1,12 @@
 import { Case } from '@codetanzania/ewea-case';
 import { safeMergeObjects } from '@lykmapipo/common';
 import { waterfall } from 'async';
-import { isFunction } from 'lodash';
+import { map, isFunction, sortBy, uniqBy } from 'lodash';
 
 // start: constants
 // order: base to specific
 
+// Age groups lower boundaries i.e 0 - 9, 10 - 19, ...
 const AGE_GROUPS_LOWER_BOUNDARIES = [
   0,
   10,
@@ -29,6 +30,19 @@ const AGE_GROUPS_LOWER_BOUNDARIES = [
   190,
   200,
 ];
+
+// generate all age groups from 0 to 200 years
+// For shaping returned value
+const NORMALIZED_AGE_GROUPS = map(
+  AGE_GROUPS_LOWER_BOUNDARIES,
+  (lowerBoundary) => ({
+    total: 0,
+    cases: [],
+    lowerBoundary,
+    upperBoundary: lowerBoundary + 9, // account for difference i.e 30 - 39
+  })
+);
+
 const CASE_AGGREGATION_EXCLUDE = [];
 
 // start: extra metric fields
@@ -257,10 +271,25 @@ export const getEventCaseAnalysis = (criteria, done) => {
   const normalize = (result, next) => {
     const { gender, ageGroups } = safeMergeObjects(...result);
 
+    // add upper boundary for returned age groups
+    const normalizedResultsAgeGroups = map(ageGroups, (group) => ({
+      ...group,
+      upperBoundary: group.lowerBoundary + 9,
+    }));
+
+    // merge all age groups
+    const normalizedAgeGroups = sortBy(
+      uniqBy(
+        [...normalizedResultsAgeGroups, ...NORMALIZED_AGE_GROUPS],
+        'lowerBoundary'
+      ),
+      'lowerBoundary'
+    );
+
     const data = safeMergeObjects({
       overall: {
         gender,
-        ageGroups,
+        ageGroups: normalizedAgeGroups,
       },
     });
 
