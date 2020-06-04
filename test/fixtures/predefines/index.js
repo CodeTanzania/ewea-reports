@@ -15,6 +15,7 @@ import partyGroups from './partygroups';
 import partyRoles from './partyroles';
 import partyGenders from './partygenders';
 import partyOccupations from './partyoccupations';
+import partyNationalities from './partynationalities';
 import vehicleTypes from './vehicletypes';
 import vehicleModels from './vehiclemodels';
 import vehicleMakes from './vehiclemakes';
@@ -47,6 +48,7 @@ const predefines = [
   ...partyRoles,
   ...partyGenders,
   ...partyOccupations,
+  ...partyNationalities,
   ...vehicleTypes,
   ...vehicleModels,
   ...vehicleMakes,
