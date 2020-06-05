@@ -1,3 +1,37 @@
+#### 0.8.0 (2020-06-05)
+
+##### Chores
+
+* **build:**  bundle library for v0.8.0 and update package version ([a3bebbaa](https://github.com/codetanzania/ewea-reports/commit/a3bebbaaa94139231779343c34cc681c22cd0aef))
+* **deps:**
+  *  update dependencies to latest versions ([a71f2d96](https://github.com/codetanzania/ewea-reports/commit/a71f2d96c899304409a8be453fe8fe4ac8b1ea62))
+  *  force latest version & audit fix ([9147decf](https://github.com/codetanzania/ewea-reports/commit/9147decfefe56e7c9c0d448eeb14aa4d267a8888))
+  *  add case ([e1f31a52](https://github.com/codetanzania/ewea-reports/commit/e1f31a52ef4d0e5e9544ed2d19db2f41c7b0b0a7))
+*  ignore neovim config file ([88a31003](https://github.com/codetanzania/ewea-reports/commit/88a31003e55d2f147364a4b2dda2bf4a9d8c962a))
+
+##### New Features
+
+* **case-aggregations:**
+  *  implement initial case analysis ([6596d968](https://github.com/codetanzania/ewea-reports/commit/6596d9680fd3a83a1eca73ba12883144de84b37c))
+  *  add base ([701f4451](https://github.com/codetanzania/ewea-reports/commit/701f445125ed078e6b3dc4370f27716a4ca7626f))
+
+##### Other Changes
+
+* **case-aggregations:**
+  *  add nationalities facet ([56a814c0](https://github.com/codetanzania/ewea-reports/commit/56a814c02ba1f4e9c0715b1e1e24e32ae8d91cb3))
+  *  add occupations facet ([c7b8452e](https://github.com/codetanzania/ewea-reports/commit/c7b8452e80e57eae2c94ec97eb9201d717e40064))
+  *  normalize age groups results data ([b47cd226](https://github.com/codetanzania/ewea-reports/commit/b47cd2268a70af5f7e994139f7aa9f8acc2916c6))
+* CodeTanzania/ewea-reports into develop ([e067f453](https://github.com/codetanzania/ewea-reports/commit/e067f45386a7b149bc6b0de96816b89c39c2cce1))
+* CodeTanzania/ewea-reports into develop ([bceaacb1](https://github.com/codetanzania/ewea-reports/commit/bceaacb18167d4e8779eb92018d2cc98cf51d7d4))
+* CodeTanzania/ewea-reports into develop ([c31fca99](https://github.com/codetanzania/ewea-reports/commit/c31fca99c2b1bbb6420e7258aad4cb15a43d2586))
+* CodeTanzania/ewea-reports into develop ([06c8a9e3](https://github.com/codetanzania/ewea-reports/commit/06c8a9e3c67609fa5e2c396e56c2926d05d81ed7))
+
+##### Tests
+
+* **fixtures:**
+  *  add party nationality ([0d03d65e](https://github.com/codetanzania/ewea-reports/commit/0d03d65e991b5b3fd631c5929f73cdc343a600b6))
+  *  ensure party gender & occupation ([4233e4e5](https://github.com/codetanzania/ewea-reports/commit/4233e4e5034082e4c710ccec24aace1779c917ab))
+
 #### 0.7.0 (2020-06-03)
 
 ##### Chores
