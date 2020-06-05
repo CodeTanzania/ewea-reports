@@ -81,7 +81,7 @@ const dispatches = [
         match: { namespace: 'PartyGender', 'strings.name.en': 'Female' },
         model: 'Predefine',
       },
-      'victiom.area': {
+      'victim.area': {
         match: { namespace: 'AdministrativeArea', 'strings.name.en': 'Ilala' },
         model: 'Predefine',
       },
