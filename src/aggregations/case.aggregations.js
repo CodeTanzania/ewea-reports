@@ -153,7 +153,6 @@ export const CASE_FACET_GENDER = {
  * @since 0.8.0
  * @version 0.1.0
  */
-
 export const CASE_FACET_AGE_GROUPS = {
   ageGroups: [
     {
@@ -178,6 +177,31 @@ export const CASE_FACET_AGE_GROUPS = {
         _id: 0,
         cases: 1,
         total: 1,
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name CASE_FACET_OCCUPATIONS
+ * @description Cases victim occupations facet
+ *
+ * @author Benson Maruchu<benmaruchu@gmail.com>
+ * @license MIT
+ * @since 0.8.0
+ * @version 0.1.0
+ */
+export const CASE_FACET_OCCUPATIONS = {
+  occupations: [
+    {
+      $group: {
+        _id: '$victim.occupation._id',
+        total: { $sum: 1 },
+        namespace: { $first: '$victim.occupation.namespace' },
+        name: { $first: '$victim.occupation.strings.name' },
+        weight: { $first: '$victim.occupation.numbers.weight' },
+        color: { $first: '$victim.occupation.strings.color' },
       },
     },
   ],
@@ -261,6 +285,7 @@ export const getEventCaseAnalysis = (criteria, done) => {
   const facets = {
     ...CASE_FACET_GENDER,
     ...CASE_FACET_AGE_GROUPS,
+    ...CASE_FACET_OCCUPATIONS,
   };
 
   base.facet(facets);
@@ -269,7 +294,7 @@ export const getEventCaseAnalysis = (criteria, done) => {
 
   // Normalize data
   const normalize = (result, next) => {
-    const { gender, ageGroups } = safeMergeObjects(...result);
+    const { gender, ageGroups, occupations } = safeMergeObjects(...result);
 
     // add upper boundary for returned age groups
     const normalizedResultsAgeGroups = map(ageGroups, (group) => ({
@@ -290,6 +315,7 @@ export const getEventCaseAnalysis = (criteria, done) => {
       overall: {
         gender,
         ageGroups: normalizedAgeGroups,
+        occupations,
       },
     });
 
