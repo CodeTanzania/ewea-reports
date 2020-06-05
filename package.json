@@ -1,6 +1,6 @@
 {
   "name": "@codetanzania/ewea-reports",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Common reports for EWEA",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -150,15 +150,10 @@
     }
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "extends": ["@commitlint/config-conventional"]
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "npm run lint",
-      "git add -A"
-    ]
+    "src/**/*.js": ["npm run lint", "git add -A"]
   },
   "husky": {
     "hooks": {
