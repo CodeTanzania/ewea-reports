@@ -1,3 +1,13 @@
+#### 0.8.1 (2020-06-08)
+
+##### Chores
+
+* **build:**  bundle library for v0.8.1 and update package version ([99f0c94d](https://github.com/codetanzania/ewea-reports/commit/99f0c94d7605321562a423d461a1e92e44dca980))
+
+##### Other Changes
+
+* **case-aggregations:**  reduce age upper boundary range to 159 ([e65dc41c](https://github.com/codetanzania/ewea-reports/commit/e65dc41ce76106718b9f1a0959678a5c40738188))
+
 #### 0.8.0 (2020-06-05)
 
 ##### Chores
