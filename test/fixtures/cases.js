@@ -18,6 +18,14 @@ const cases = [
     dischargedAt: '2020-05-04T02:59:48.323Z',
     remarks: 'Handled.',
     populate: {
+      stage: {
+        match: { namespace: 'CaseStage', 'strings.name.en': 'Suspect' },
+        model: 'Predefine',
+      },
+      severity: {
+        match: { namespace: 'CaseSeverity', 'strings.name.en': 'Mild' },
+        model: 'Predefine',
+      },
       reporter: {
         match: { name: 'Ali Mdoe' },
         model: 'Party',
@@ -69,6 +77,14 @@ const cases = [
     dischargedAt: '2020-05-04T02:59:48.323Z',
     remarks: 'Handled.',
     populate: {
+      stage: {
+        match: { namespace: 'CaseStage', 'strings.name.en': 'Confirmed' },
+        model: 'Predefine',
+      },
+      severity: {
+        match: { namespace: 'CaseSeverity', 'strings.name.en': 'Severe' },
+        model: 'Predefine',
+      },
       reporter: {
         match: { name: 'Ali Mdoe' },
         model: 'Party',
