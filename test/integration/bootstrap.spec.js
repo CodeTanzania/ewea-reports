@@ -1,7 +1,7 @@
 import { connect, seed } from '@codetanzania/ewea-common';
 import {
   clear,
-  // drop,
+  drop,
   // enableDebug
 } from '@lykmapipo/mongoose-test-helpers';
 
@@ -33,6 +33,6 @@ before((done) => {
   return seed(done);
 });
 
-// after((done) => clear(done));
+after((done) => clear(done));
 
-// after((done) => drop(done));
+after((done) => drop(done));

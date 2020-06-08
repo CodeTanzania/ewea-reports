@@ -24,18 +24,23 @@ const AGE_GROUPS_LOWER_BOUNDARIES = [
   130,
   140,
   150,
+  160,
 ];
 
 // generate all age groups from 0 to 200 years
 // For shaping returned value
 const NORMALIZED_AGE_GROUPS = map(
   AGE_GROUPS_LOWER_BOUNDARIES,
-  (lowerBoundary) => ({
-    total: 0,
-    cases: [],
-    lowerBoundary,
-    upperBoundary: lowerBoundary + 9, // account for difference i.e 30 - 39
-  })
+  (lowerBoundary) => {
+    const upperBoundary =
+      lowerBoundary === 'Other' ? 'Other' : lowerBoundary + 9; // account for difference i.e 30 - 39
+    return {
+      total: 0,
+      cases: [],
+      lowerBoundary,
+      upperBoundary,
+    };
+  }
 );
 
 const CASE_AGGREGATION_EXCLUDE = [];
