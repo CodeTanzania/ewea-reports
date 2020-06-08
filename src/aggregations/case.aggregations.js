@@ -1,7 +1,7 @@
 import { Case } from '@codetanzania/ewea-case';
 import { safeMergeObjects } from '@lykmapipo/common';
 import { waterfall } from 'async';
-import { map, isFunction, sortBy, uniqBy } from 'lodash';
+import { map, isFunction, sortBy, uniqBy, slice } from 'lodash';
 
 // start: constants
 // order: base to specific
@@ -27,11 +27,11 @@ const AGE_GROUPS_LOWER_BOUNDARIES = [
   160,
 ];
 
-// generate all age groups from 0 to 200 years
-// For shaping returned value
-const NORMALIZED_AGE_GROUPS = map(
-  AGE_GROUPS_LOWER_BOUNDARIES,
-  (lowerBoundary) => {
+// generate all age groups from 0 to 159 years
+// Remove the last range 160 - 169 since it is not included in $buckets
+// shape returned values to have a common structure for all ranges
+const NORMALIZED_AGE_GROUPS = slice(
+  map(AGE_GROUPS_LOWER_BOUNDARIES, (lowerBoundary) => {
     const upperBoundary =
       lowerBoundary === 'Other' ? 'Other' : lowerBoundary + 9; // account for difference i.e 30 - 39
     return {
@@ -40,7 +40,9 @@ const NORMALIZED_AGE_GROUPS = map(
       lowerBoundary,
       upperBoundary,
     };
-  }
+  }),
+  0,
+  AGE_GROUPS_LOWER_BOUNDARIES.length - 1
 );
 
 const CASE_AGGREGATION_EXCLUDE = [];
