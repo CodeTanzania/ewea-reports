@@ -24,11 +24,6 @@ const AGE_GROUPS_LOWER_BOUNDARIES = [
   130,
   140,
   150,
-  160,
-  170,
-  180,
-  190,
-  200,
 ];
 
 // generate all age groups from 0 to 200 years
