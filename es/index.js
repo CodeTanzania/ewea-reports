@@ -5,7 +5,7 @@ import { connect } from '@lykmapipo/mongoose-common';
 import { mount } from '@lykmapipo/express-common';
 import { Router, start as start$1 } from '@lykmapipo/express-rest-actions';
 import { createModels } from '@lykmapipo/file';
-import { isFunction, map, sortBy, uniqBy, mapValues, endsWith } from 'lodash';
+import { isFunction, slice, map, sortBy, uniqBy, mapValues, endsWith } from 'lodash';
 import { waterfall, parallel } from 'async';
 import { Party } from '@codetanzania/emis-stakeholder';
 import { DEFAULT_PREDEFINE_RELATION } from '@codetanzania/ewea-common';
@@ -1450,11 +1450,11 @@ const AGE_GROUPS_LOWER_BOUNDARIES = [
   160,
 ];
 
-// generate all age groups from 0 to 200 years
-// For shaping returned value
-const NORMALIZED_AGE_GROUPS = map(
-  AGE_GROUPS_LOWER_BOUNDARIES,
-  (lowerBoundary) => {
+// generate all age groups from 0 to 159 years
+// Remove the last range 160 - 169 since it is not included in $buckets
+// shape returned values to have a common structure for all ranges
+const NORMALIZED_AGE_GROUPS = slice(
+  map(AGE_GROUPS_LOWER_BOUNDARIES, (lowerBoundary) => {
     const upperBoundary =
       lowerBoundary === 'Other' ? 'Other' : lowerBoundary + 9; // account for difference i.e 30 - 39
     return {
@@ -1463,7 +1463,9 @@ const NORMALIZED_AGE_GROUPS = map(
       lowerBoundary,
       upperBoundary,
     };
-  }
+  }),
+  0,
+  AGE_GROUPS_LOWER_BOUNDARIES.length - 1
 );
 
 const CASE_AGGREGATION_EXCLUDE = [];
