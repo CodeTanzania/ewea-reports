@@ -1,3 +1,13 @@
+#### 0.8.3 (2020-06-08)
+
+##### Chores
+
+* **build:**  bundle library for v0.8.3 and update package version ([c61ff215](https://github.com/codetanzania/ewea-reports/commit/c61ff215671cdd29449b7e8de3b9c38fcd96c8e1))
+
+##### Bug Fixes
+
+* **case-aggregation:**  remove last generated age group ([5ab1bf23](https://github.com/codetanzania/ewea-reports/commit/5ab1bf23cfc548fad30ec0f0690bcb6711a734f4))
+
 #### 0.8.2 (2020-06-08)
 
 ##### Chores
