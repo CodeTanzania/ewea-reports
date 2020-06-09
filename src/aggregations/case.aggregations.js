@@ -234,6 +234,56 @@ export const CASE_FACET_NATIONALITIES = {
   ],
 };
 
+/**
+ * @constant
+ * @name CASE_FACET_STAGES
+ * @description Case stages facet
+ *
+ * @author Benson Maruchu<benmaruchu@gmail.com>
+ * @license MIT
+ * @since 0.9.0
+ * @version 0.1.0
+ */
+export const CASE_FACET_STAGES = {
+  stages: [
+    {
+      $group: {
+        _id: '$stage._id',
+        total: { $sum: 1 },
+        namespace: { $first: '$stage.namespace' },
+        name: { $first: '$stage.strings.name' },
+        weight: { $first: '$stage.numbers.weight' },
+        color: { $first: '$stage.strings.color' },
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name CASE_FACET_SEVERITIES
+ * @description Case severities facet
+ *
+ * @author Benson Maruchu<benmaruchu@gmail.com>
+ * @license MIT
+ * @since 0.9.0
+ * @version 0.1.0
+ */
+export const CASE_FACET_SEVERITIES = {
+  severities: [
+    {
+      $group: {
+        _id: '$severity._id',
+        total: { $sum: 1 },
+        namespace: { $first: '$severity.namespace' },
+        name: { $first: '$severity.strings.name' },
+        weight: { $first: '$severity.numbers.weight' },
+        color: { $first: '$severity.strings.color' },
+      },
+    },
+  ],
+};
+
 // start: aggregations
 // order: base to specific
 
@@ -314,6 +364,8 @@ export const getEventCaseAnalysis = (criteria, done) => {
     ...CASE_FACET_AGE_GROUPS,
     ...CASE_FACET_OCCUPATIONS,
     ...CASE_FACET_NATIONALITIES,
+    ...CASE_FACET_SEVERITIES,
+    ...CASE_FACET_STAGES,
   };
 
   base.facet(facets);
@@ -322,9 +374,14 @@ export const getEventCaseAnalysis = (criteria, done) => {
 
   // Normalize data
   const normalize = (result, next) => {
-    const { gender, ageGroups, occupations, nationalities } = safeMergeObjects(
-      ...result
-    );
+    const {
+      gender,
+      ageGroups,
+      occupations,
+      nationalities,
+      severities,
+      stages,
+    } = safeMergeObjects(...result);
 
     // add upper boundary for returned age groups
     const normalizedResultsAgeGroups = map(ageGroups, (group) => ({
@@ -347,6 +404,8 @@ export const getEventCaseAnalysis = (criteria, done) => {
         ageGroups: normalizedAgeGroups,
         occupations,
         nationalities,
+        severities,
+        stages,
       },
     });
 
