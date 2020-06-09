@@ -23,6 +23,8 @@ describe('EventCase Aggregations', () => {
       expect(report.data.overall.ageGroups).to.exist.and.be.an('array');
       expect(report.data.overall.occupations).to.exist.and.be.an('array');
       expect(report.data.overall.nationalities).to.exist.and.be.an('array');
+      expect(report.data.overall.severities).to.exist.and.be.an('array');
+      expect(report.data.overall.stages).to.exist.and.be.an('array');
       expect(report.data.overall.ageGroups).to.have.lengthOf(16);
       done(error, report);
     });
