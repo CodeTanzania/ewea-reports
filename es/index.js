@@ -1657,6 +1657,56 @@ const CASE_FACET_NATIONALITIES = {
   ],
 };
 
+/**
+ * @constant
+ * @name CASE_FACET_STAGES
+ * @description Case stages facet
+ *
+ * @author Benson Maruchu<benmaruchu@gmail.com>
+ * @license MIT
+ * @since 0.9.0
+ * @version 0.1.0
+ */
+const CASE_FACET_STAGES = {
+  stages: [
+    {
+      $group: {
+        _id: '$stage._id',
+        total: { $sum: 1 },
+        namespace: { $first: '$stage.namespace' },
+        name: { $first: '$stage.strings.name' },
+        weight: { $first: '$stage.numbers.weight' },
+        color: { $first: '$stage.strings.color' },
+      },
+    },
+  ],
+};
+
+/**
+ * @constant
+ * @name CASE_FACET_SEVERITIES
+ * @description Case severities facet
+ *
+ * @author Benson Maruchu<benmaruchu@gmail.com>
+ * @license MIT
+ * @since 0.9.0
+ * @version 0.1.0
+ */
+const CASE_FACET_SEVERITIES = {
+  severities: [
+    {
+      $group: {
+        _id: '$severity._id',
+        total: { $sum: 1 },
+        namespace: { $first: '$severity.namespace' },
+        name: { $first: '$severity.strings.name' },
+        weight: { $first: '$severity.numbers.weight' },
+        color: { $first: '$severity.strings.color' },
+      },
+    },
+  ],
+};
+
 // start: aggregations
 // order: base to specific
 
@@ -1737,6 +1787,8 @@ const getEventCaseAnalysis = (criteria, done) => {
     ...CASE_FACET_AGE_GROUPS,
     ...CASE_FACET_OCCUPATIONS,
     ...CASE_FACET_NATIONALITIES,
+    ...CASE_FACET_SEVERITIES,
+    ...CASE_FACET_STAGES,
   };
 
   base.facet(facets);
@@ -1745,9 +1797,14 @@ const getEventCaseAnalysis = (criteria, done) => {
 
   // Normalize data
   const normalize = (result, next) => {
-    const { gender, ageGroups, occupations, nationalities } = safeMergeObjects(
-      ...result
-    );
+    const {
+      gender,
+      ageGroups,
+      occupations,
+      nationalities,
+      severities,
+      stages,
+    } = safeMergeObjects(...result);
 
     // add upper boundary for returned age groups
     const normalizedResultsAgeGroups = map(ageGroups, (group) => ({
@@ -1770,6 +1827,8 @@ const getEventCaseAnalysis = (criteria, done) => {
         ageGroups: normalizedAgeGroups,
         occupations,
         nationalities,
+        severities,
+        stages,
       },
     });
 
@@ -2682,4 +2741,4 @@ const start = (done) => {
   });
 };
 
-export { CASE_BASE_METRIC_FIELDS, CASE_BASE_PROJECTION, CASE_DEFAULT_PROJECTION, CASE_FACET_AGE_GROUPS, CASE_FACET_GENDER, CASE_FACET_NATIONALITIES, CASE_FACET_OCCUPATIONS, CASE_FACET_OVERVIEW, CHANGELOG_FLAG_METRIC_FIELDS, CHANGELOG_TIME_METRIC_FIELDS, DEFAULT_OVERVIEW_ANALYSIS, DISPATCH_BASE_EVENTGROUP_PROJECTION, DISPATCH_BASE_EVENTTYPE_PROJECTION, DISPATCH_BASE_METRIC_FIELDS, DISPATCH_BASE_PROJECTION, DISPATCH_DEFAULT_PROJECTION, DISPATCH_FACET_OVERALL_EVENTGROUP, DISPATCH_FACET_OVERALL_EVENTTYPE, DISPATCH_FACET_OVERVIEW, EVENT_BASE_AREA_PROJECTION, EVENT_BASE_CERTAINTY_PROJECTION, EVENT_BASE_GROUP_PROJECTION, EVENT_BASE_LEVEL_PROJECTION, EVENT_BASE_METRIC_FIELDS, EVENT_BASE_PROJECTION, EVENT_BASE_RESPONSE_PROJECTION, EVENT_BASE_SEVERITY_PROJECTION, EVENT_BASE_STATUS_PROJECTION, EVENT_BASE_TYPE_PROJECTION, EVENT_BASE_URGENCY_PROJECTION, EVENT_DEFAULT_PROJECTION, EVENT_FACET_OVERALL_AREA, EVENT_FACET_OVERALL_CERTAINTY, EVENT_FACET_OVERALL_GROUP, EVENT_FACET_OVERALL_LEVEL, EVENT_FACET_OVERALL_RESPONSE, EVENT_FACET_OVERALL_SEVERITY, EVENT_FACET_OVERALL_STATUS, EVENT_FACET_OVERALL_TYPE, EVENT_FACET_OVERALL_URGENCY, EVENT_FACET_OVERVIEW, PARTY_BASE_AREA_PROJECTION, PARTY_BASE_GROUP_PROJECTION, PARTY_BASE_LEVEL_PROJECTION, PARTY_BASE_METRIC_FIELDS, PARTY_BASE_PROJECTION, PARTY_BASE_ROLE_PROJECTION, PARTY_DEFAULT_PROJECTION, PARTY_FACET_OVERALL_AREA, PARTY_FACET_OVERALL_GROUP, PARTY_FACET_OVERALL_LEVEL, PARTY_FACET_OVERALL_ROLE, PARTY_FACET_OVERVIEW, PREDEFINE_FLAG_METRIC_FIELDS, PREDEFINE_TIME_METRIC_FIELDS, apiVersion, getChangeLogBaseAggregation, getDispatchAnalysis, getDispatchBaseAggregation, getDispatchOverview, getEventAnalysis, getEventBaseAggregation, getEventCaseAnalysis, getEventCaseBaseAggregation, getEventOverview, getOverviewAnalysis, getPartyAnalysis, getPartyBaseAggregation, getPartyOverview, getPredefineBaseAggregation, info, router as reportRouter, start };
+export { CASE_BASE_METRIC_FIELDS, CASE_BASE_PROJECTION, CASE_DEFAULT_PROJECTION, CASE_FACET_AGE_GROUPS, CASE_FACET_GENDER, CASE_FACET_NATIONALITIES, CASE_FACET_OCCUPATIONS, CASE_FACET_OVERVIEW, CASE_FACET_SEVERITIES, CASE_FACET_STAGES, CHANGELOG_FLAG_METRIC_FIELDS, CHANGELOG_TIME_METRIC_FIELDS, DEFAULT_OVERVIEW_ANALYSIS, DISPATCH_BASE_EVENTGROUP_PROJECTION, DISPATCH_BASE_EVENTTYPE_PROJECTION, DISPATCH_BASE_METRIC_FIELDS, DISPATCH_BASE_PROJECTION, DISPATCH_DEFAULT_PROJECTION, DISPATCH_FACET_OVERALL_EVENTGROUP, DISPATCH_FACET_OVERALL_EVENTTYPE, DISPATCH_FACET_OVERVIEW, EVENT_BASE_AREA_PROJECTION, EVENT_BASE_CERTAINTY_PROJECTION, EVENT_BASE_GROUP_PROJECTION, EVENT_BASE_LEVEL_PROJECTION, EVENT_BASE_METRIC_FIELDS, EVENT_BASE_PROJECTION, EVENT_BASE_RESPONSE_PROJECTION, EVENT_BASE_SEVERITY_PROJECTION, EVENT_BASE_STATUS_PROJECTION, EVENT_BASE_TYPE_PROJECTION, EVENT_BASE_URGENCY_PROJECTION, EVENT_DEFAULT_PROJECTION, EVENT_FACET_OVERALL_AREA, EVENT_FACET_OVERALL_CERTAINTY, EVENT_FACET_OVERALL_GROUP, EVENT_FACET_OVERALL_LEVEL, EVENT_FACET_OVERALL_RESPONSE, EVENT_FACET_OVERALL_SEVERITY, EVENT_FACET_OVERALL_STATUS, EVENT_FACET_OVERALL_TYPE, EVENT_FACET_OVERALL_URGENCY, EVENT_FACET_OVERVIEW, PARTY_BASE_AREA_PROJECTION, PARTY_BASE_GROUP_PROJECTION, PARTY_BASE_LEVEL_PROJECTION, PARTY_BASE_METRIC_FIELDS, PARTY_BASE_PROJECTION, PARTY_BASE_ROLE_PROJECTION, PARTY_DEFAULT_PROJECTION, PARTY_FACET_OVERALL_AREA, PARTY_FACET_OVERALL_GROUP, PARTY_FACET_OVERALL_LEVEL, PARTY_FACET_OVERALL_ROLE, PARTY_FACET_OVERVIEW, PREDEFINE_FLAG_METRIC_FIELDS, PREDEFINE_TIME_METRIC_FIELDS, apiVersion, getChangeLogBaseAggregation, getDispatchAnalysis, getDispatchBaseAggregation, getDispatchOverview, getEventAnalysis, getEventBaseAggregation, getEventCaseAnalysis, getEventCaseBaseAggregation, getEventOverview, getOverviewAnalysis, getPartyAnalysis, getPartyBaseAggregation, getPartyOverview, getPredefineBaseAggregation, info, router as reportRouter, start };
