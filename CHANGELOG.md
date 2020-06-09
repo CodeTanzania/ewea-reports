@@ -1,3 +1,18 @@
+#### 0.9.0 (2020-06-09)
+
+##### Chores
+
+* **build:**  bundle library for v0.9.0 and update package version ([a8075fb5](https://github.com/codetanzania/ewea-reports/commit/a8075fb5f0bf3185c942304fddf320689d82a604))
+* **deps:**  force latest version & audit fix ([04ac7423](https://github.com/codetanzania/ewea-reports/commit/04ac742351cf6ba9269807f72fe3494130e12cb9))
+
+##### New Features
+
+* **case-aggregations:**  add case severity and stage facets ([353172b0](https://github.com/codetanzania/ewea-reports/commit/353172b0c1a3016babae99eb1732f69ac2f955b7))
+
+##### Tests
+
+* **fixtures:**  add case stage & severity ([ef0a8a08](https://github.com/codetanzania/ewea-reports/commit/ef0a8a0894ff6425a046f5110f517fc364a61ee6))
+
 #### 0.8.3 (2020-06-08)
 
 ##### Chores
