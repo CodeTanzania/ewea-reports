@@ -96,7 +96,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.1",
-    "eslint-plugin-jsdoc": "^27.0.4",
+    "eslint-plugin-jsdoc": "^27.0.5",
     "eslint-plugin-mocha": "^7.0.1",
     "eslint-plugin-prettier": "^3.1.3",
     "generate-changelog": "^1.8.0",
@@ -119,7 +119,7 @@
   "dependencies": {
     "@codetanzania/emis-stakeholder": ">=2.8.0",
     "@codetanzania/ewea-case": ">=0.4.0",
-    "@codetanzania/ewea-common": ">=0.20.0",
+    "@codetanzania/ewea-common": ">=0.21.0",
     "@codetanzania/ewea-dispatch": ">=0.6.0",
     "@codetanzania/ewea-event": ">=0.11.0",
     "@codetanzania/ewea-internals": ">=0.21.0",
@@ -150,10 +150,15 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
-    "src/**/*.js": ["npm run lint", "git add -A"]
+    "src/**/*.js": [
+      "npm run lint",
+      "git add -A"
+    ]
   },
   "husky": {
     "hooks": {
