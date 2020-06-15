@@ -19,6 +19,7 @@ describe('EventCase Aggregations', () => {
       expect(error).to.not.exist;
       expect(report).to.exist.and.be.an('object');
       expect(report.data).to.exist.and.be.an('object');
+      expect(report.data.overview).to.exist.and.be.an('object');
       expect(report.data.overall.gender).to.exist.and.be.an('array');
       expect(report.data.overall.ageGroups).to.exist.and.be.an('array');
       expect(report.data.overall.occupations).to.exist.and.be.an('array');
