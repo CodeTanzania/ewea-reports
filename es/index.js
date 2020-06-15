@@ -1532,15 +1532,29 @@ const CASE_BASE_PROJECTION = {
 /**
  * @constant
  * @name CASE_FACET_OVERVIEW
- * @description General `Event` overview facet.
+ * @description General `Case` overview facet.
  * @type {object}
  *
- * @author lally elias <lallyelias87@gmail.com>
+ * @author Benson Maruchu <benmaruchu@gmail.com>
  * @license MIT
- * @since 0.8.0
+ * @since 0.9.1
  * @version 0.1.0
  */
-const CASE_FACET_OVERVIEW = {};
+const CASE_FACET_OVERVIEW = {
+  overview: [
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 1 },
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+      },
+    },
+  ],
+};
 
 /**
  * @constant
@@ -1783,6 +1797,7 @@ const getEventCaseAnalysis = (criteria, done) => {
 
   // add facets
   const facets = {
+    ...CASE_FACET_OVERVIEW,
     ...CASE_FACET_GENDER,
     ...CASE_FACET_AGE_GROUPS,
     ...CASE_FACET_OCCUPATIONS,
@@ -1798,6 +1813,7 @@ const getEventCaseAnalysis = (criteria, done) => {
   // Normalize data
   const normalize = (result, next) => {
     const {
+      overview,
       gender,
       ageGroups,
       occupations,
@@ -1822,6 +1838,7 @@ const getEventCaseAnalysis = (criteria, done) => {
     );
 
     const data = safeMergeObjects({
+      overview: safeMergeObjects(...overview),
       overall: {
         gender,
         ageGroups: normalizedAgeGroups,
