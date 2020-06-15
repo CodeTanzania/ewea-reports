@@ -1,3 +1,22 @@
+#### 0.9.2 (2020-06-15)
+
+##### Chores
+
+* **deps:**
+  *  force latest version & audit fix ([77cb9e71](https://github.com/codetanzania/ewea-reports/commit/77cb9e7187fab7e51a9832ec3ee50aa3cade6bdf))
+  *  force latest version & audit fix ([e6a36f82](https://github.com/codetanzania/ewea-reports/commit/e6a36f82953e82bb460fc7e4be4c7147f00e4eb4))
+  *  force latest version & audit fix ([d7d5df7c](https://github.com/codetanzania/ewea-reports/commit/d7d5df7c55894cb357082cbb821bbf8e143333e9))
+  *  force latest version & audit fix ([3c933ae6](https://github.com/codetanzania/ewea-reports/commit/3c933ae6cc9b9816f6db71df52913bda12cc6a61))
+* **build:**  bundle library for v0.9.1 and update package version ([ee159212](https://github.com/codetanzania/ewea-reports/commit/ee15921260a4518004125f5ac347b30fe54f7e7b))
+
+##### Documentation Changes
+
+* **changelog:**  add release notes for v0.9.1 ([7f952aa0](https://github.com/codetanzania/ewea-reports/commit/7f952aa0ac7c308ae2f0f3fdf36ea9a090023443))
+
+##### Other Changes
+
+* **case-aggregations:**  add overview facet ([383bfd9a](https://github.com/codetanzania/ewea-reports/commit/383bfd9aea2cc76df78524823401f9c8f3d2a80f))
+
 #### 0.9.1 (2020-06-15)
 
 ##### Chores
